@@ -1,0 +1,53 @@
+Options -Indexes
+ErrorDocument 404 /404.php
+
+<IfModule mod_php5.c>
+  php_flag session.use_trans_sid off
+  #php_flag default_charset UTF-8
+  #php_value display_errors 1
+</IfModule>
+
+<IfModule headers_module>
+	Header set X-Frame-Options SAMEORIGIN
+	Header set X-Content-Type-Options nosniff
+</IfModule>
+
+<IfModule mod_php7.c>
+  php_flag session.use_trans_sid off
+  php_value default_charset UTF-8
+  php_value mbstring.func_overload 2
+  php_value pcre.recursion_limit 100000
+  #php_value auto_prepend_file "/home/c/cq96218/public_html/bitrix/modules/security/tools/start.php"
+  #php_admin_value mbstring.func_overload 2
+  #php_value mbstring.internal_encoding UTF-8
+  php_value display_errors 1
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  Options +FollowSymLinks
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-l
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !/bitrix/urlrewrite.php$
+  RewriteRule ^(.*)$ /bitrix/urlrewrite.php [L]
+  RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization}]
+
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://color.peshta.ru%{REQUEST_URI} [L,NE,R=301]
+</IfModule>
+
+<IfModule mod_dir.c>
+  DirectoryIndex index.php index.html
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive on
+  ExpiresByType image/jpeg "access plus 3 day"
+  ExpiresByType image/gif "access plus 3 day"
+  ExpiresByType image/png "access plus 3 day"
+  ExpiresByType text/css "access plus 3 day"
+  ExpiresByType application/javascript "access plus 3 day"
+</IfModule>
