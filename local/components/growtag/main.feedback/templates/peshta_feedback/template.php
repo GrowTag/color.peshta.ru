@@ -59,7 +59,7 @@ if(strlen($arResult["OK_MESSAGE"]) > 0)
                 <span></span>
             </label>
         </div>
-        <input type="hidden" name="recaptcha_response" id="recaptchaResponse-footer">
+        <input type="hidden" name="recaptcha_response">
         <input type="hidden" name="PARAMS_HASH" value="<?=$arResult["PARAMS_HASH"]?>">
     </div>
     <input title="Нажимая 'Отправить' вы соглашаетесь с политикой конфиденциальности и даёте согласие на периодическую коммуникацию." <?if(strlen($arResult["OK_MESSAGE"]) > 0 || isset($_GET['success'])):?>disabled<?endif;?> type="submit" class="red-button" name="submit" value="Получить предложение"/>

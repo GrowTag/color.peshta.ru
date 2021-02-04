@@ -161,9 +161,7 @@
         widget.subscribe({
             type: BX.LiveChatWidget.SubscriptionType.userMessage,
             callback: function(data) {
-                console.log("OK!");
                 // любая команда
-
                 if (typeof(dataLayer) == 'undefined')
                 {
                     dataLayer = [];

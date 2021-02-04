@@ -70,7 +70,7 @@ if(strlen($arResult["OK_MESSAGE"]) > 0)
                     </label>
                 </div>
                 <div class="index-section-7__form-button mt-4">
-                    <input type="hidden" name="recaptcha_response" id="recaptchaResponse-callback-modal">
+                    <input type="hidden" name="recaptcha_response">
                     <input type="hidden" name="PARAMS_HASH" value="<?=$arResult["PARAMS_HASH"]?>">
                     <input title="Нажимая 'Перезвоните мне' вы соглашаетесь с политикой конфиденциальности." <?if(strlen($arResult["OK_MESSAGE"]) > 0 || isset($_GET['success'])):?>disabled<?endif;?> type="submit" name="submit" value="Перезвоните мне" class="red-button form-button"/>
                 </div>

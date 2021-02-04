@@ -48,7 +48,7 @@ if(strlen($arResult["OK_MESSAGE"]) > 0)
                 <p>Зарегистрируйтесь на сайте для оформления заказа онлайн.<br/>Вы можете авторизоваться на сайте через соц.сети!<br/>Нажимая "Заказать" вы соглашаетесь с <a href="/policy/">политикой конфиденциальности</a>.</p>
             </div>
             <div class="modal-footer">
-                <input type="hidden" name="recaptcha_response" id="recaptchaResponse-modal">
+                <input type="hidden" name="recaptcha_response">
                 <input type="hidden" name="PARAMS_HASH" value="<?=$arResult["PARAMS_HASH"]?>">
                 <a href="/personal/" class="modal-button-grey">Регистрация / Вход</a>
                 <input title="Нажимая 'Заказать' вы соглашаетесь с политикой конфиденциальности." <?if(strlen($arResult["OK_MESSAGE"]) > 0 || isset($_GET['success'])):?>disabled<?endif;?> type="submit" name="submit" value="Заказать" class="modal-button-orange"/>

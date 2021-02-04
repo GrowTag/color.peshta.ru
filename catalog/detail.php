@@ -1,10 +1,11 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetPageProperty("title", "Заказать визитки в Ижевске. Изготовление визиток от 60 минут | Типография Пешта");
 $APPLICATION->SetTitle("Каталог");
 ?>
 <?$APPLICATION->IncludeComponent(
-	"bitrix:news.detail", 
-	"catalog_detail", 
+	"bitrix:news.detail",
+	"catalog_detail",
 	array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",
 		"ADD_ELEMENT_CHAIN" => "Y",
@@ -49,7 +50,7 @@ $APPLICATION->SetTitle("Каталог");
 			2 => "CALC_SECTION",
 			3 => "VIDEO",
 			4 => "SLIDER_SECTION",
-			5 => "",
+			5 => "IMPRINT",
 		),
 		"SET_BROWSER_TITLE" => "Y",
 		"SET_CANONICAL_URL" => "Y",
@@ -70,8 +71,8 @@ $APPLICATION->SetTitle("Каталог");
     <div class="container">
         <div class="row align-items-center">
             <div class="index-section-7__text col-md-6">
-                <span>Мы на связи</span>
                 <div class="index-section-7__title">
+                    <span>Мы на связи</span>
                     Закажите расчет и мы свяжемся с вами в течение 30 минут
                 </div>
             </div>

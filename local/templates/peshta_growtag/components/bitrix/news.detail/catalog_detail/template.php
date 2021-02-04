@@ -114,7 +114,8 @@ $videoLink = explode('=', $arResult["PROPERTIES"]["VIDEO"]["VALUE"])[1];
             "USER_CONSENT" => "N",
             "USER_CONSENT_ID" => "0",
             "USER_CONSENT_IS_CHECKED" => "Y",
-            "USER_CONSENT_IS_LOADED" => "N"
+            "USER_CONSENT_IS_LOADED" => "N",
+            "USE_IMPRINT" => $arResult["PROPERTIES"]["IMPRINT"]["VALUE_XML_ID"]
         )
     );?>
 <?endif;?>
@@ -215,6 +216,7 @@ $videoLink = explode('=', $arResult["PROPERTIES"]["VIDEO"]["VALUE"])[1];
             <h2>Наше портфолио:</h2>
         </div>
         <?$APPLICATION->IncludeComponent("bitrix:news.list", "catalog_cases_detail", Array(
+            "ELEMENT_ID" => $arResult["PROPERTIES"]["SLIDER_SECTION"]["VALUE"],
             "ACTIVE_DATE_FORMAT" => "d.m.Y",	// Формат показа даты
             "ADD_SECTIONS_CHAIN" => "N",	// Включать раздел в цепочку навигации
             "AJAX_MODE" => "N",	// Включить режим AJAX
@@ -253,11 +255,11 @@ $videoLink = explode('=', $arResult["PROPERTIES"]["VIDEO"]["VALUE"])[1];
             "PAGER_SHOW_ALWAYS" => "N",	// Выводить всегда
             "PAGER_TEMPLATE" => ".default",	// Шаблон постраничной навигации
             "PAGER_TITLE" => "Новости",	// Название категорий
-            "PARENT_SECTION" => $arResult["PROPERTIES"]["SLIDER_SECTION"]["VALUE"],	// ID раздела
+            "PARENT_SECTION" => "",	// ID раздела
             "PARENT_SECTION_CODE" => "",	// Код раздела
             "PREVIEW_TRUNCATE_LEN" => "",	// Максимальная длина анонса для вывода (только для типа текст)
             "PROPERTY_CODE" => array(	// Свойства
-                0 => "",
+                0 => "IMAGES",
                 1 => "",
             ),
             "SET_BROWSER_TITLE" => "N",	// Устанавливать заголовок окна браузера
@@ -276,6 +278,7 @@ $videoLink = explode('=', $arResult["PROPERTIES"]["VIDEO"]["VALUE"])[1];
             false
         );?>
         <?$APPLICATION->IncludeComponent("bitrix:news.list", "catalog_cases_detail_mobile", Array(
+            "ELEMENT_ID" => $arResult["PROPERTIES"]["SLIDER_SECTION"]["VALUE"],
             "ACTIVE_DATE_FORMAT" => "d.m.Y",	// Формат показа даты
             "ADD_SECTIONS_CHAIN" => "N",	// Включать раздел в цепочку навигации
             "AJAX_MODE" => "N",	// Включить режим AJAX
@@ -314,11 +317,11 @@ $videoLink = explode('=', $arResult["PROPERTIES"]["VIDEO"]["VALUE"])[1];
             "PAGER_SHOW_ALWAYS" => "N",	// Выводить всегда
             "PAGER_TEMPLATE" => ".default",	// Шаблон постраничной навигации
             "PAGER_TITLE" => "Новости",	// Название категорий
-            "PARENT_SECTION" => $arResult["PROPERTIES"]["SLIDER_SECTION"]["VALUE"],	// ID раздела
+            "PARENT_SECTION" => "",	// ID раздела
             "PARENT_SECTION_CODE" => "",	// Код раздела
             "PREVIEW_TRUNCATE_LEN" => "",	// Максимальная длина анонса для вывода (только для типа текст)
             "PROPERTY_CODE" => array(	// Свойства
-                0 => "",
+                0 => "IMAGES",
                 1 => "",
             ),
             "SET_BROWSER_TITLE" => "N",	// Устанавливать заголовок окна браузера

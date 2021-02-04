@@ -57,7 +57,7 @@ if(strlen($arResult["OK_MESSAGE"]) > 0)
                 <?=bitrix_sessid_post()?>
                 <input type="text" required placeholder="Ваше имя *" name="user_name" value="<?=$arResult["AUTHOR_NAME"]?>"/>
                 <input type="text" required placeholder="Ваш Email *" name="user_email" value="<?=$arResult["AUTHOR_EMAIL"]?>">
-                <input type="hidden" name="recaptcha_response" id="recaptchaResponse-subscribe">
+                <input type="hidden" name="recaptcha_response">
                 <input type="hidden" name="PARAMS_HASH" value="<?=$arResult["PARAMS_HASH"]?>">
                 <input type="hidden" name="SUBSCRIBE" value="true">
                 <input title="Нажимая 'Получить календарь скидок' вы соглашаетесь с политикой конфиденциальности." <?if(strlen($arResult["OK_MESSAGE"]) > 0 || isset($_GET['success'])):?>disabled<?endif;?> type="submit" name="submit" value="Получить календарь скидок" class="red-button form-button">

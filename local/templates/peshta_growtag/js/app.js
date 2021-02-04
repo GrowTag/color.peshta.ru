@@ -78,36 +78,8 @@ window.onload = function(){
 var onloadCallbackRecap = function() {
     grecaptcha.ready(function () {
         grecaptcha.execute('6Lf9BLcZAAAAAB05N0PUYAIeA98FEOx_AosAvT67', { action: 'contact_callback' }).then(function (token) {
-            var recaptchaResponseSubscribe = document.getElementById('recaptchaResponse-subscribe');
-            var recaptchaResponseSettlement = document.getElementById('recaptchaResponse-settlement');
-            var recaptchaResponseSettlementIndex = document.getElementById('recaptchaResponse-settlement-index');
-            var recaptchaResponseCallback = document.getElementById('recaptchaResponse-callback-modal');
-            var recaptchaResponseOrderModal = document.getElementById('recaptchaResponse-order-modal');
-            var recaptchaResponseModal = document.getElementById('recaptchaResponse-modal');
-            var recaptchaResponseReg = document.getElementById('recaptchaResponse-reg');
-
-            if(recaptchaResponseSubscribe){
-                recaptchaResponseSubscribe.value = token;
-            }
-            if(recaptchaResponseSettlement){
-                recaptchaResponseSettlement.value = token;
-            }
-            if(recaptchaResponseSettlementIndex){
-                recaptchaResponseSettlementIndex.value = token;
-            }
-            if(recaptchaResponseCallback){
-                recaptchaResponseCallback.value = token;
-            }
-            if(recaptchaResponseOrderModal){
-                recaptchaResponseOrderModal.value = token;
-            }
-            if(recaptchaResponseModal){
-                recaptchaResponseModal.value = token;
-            }
-            if(recaptchaResponseReg){
-                recaptchaResponseReg.value = token;
-            }
-
+            var inputs = document.getElementsByName("recaptcha_response");
+            inputs.forEach(el => el.value = token);
         });
     });
 };
@@ -197,6 +169,7 @@ var CRamCalc =
         {
             CRamCalc.PropertyValueChange(item);
             CRamCalc.RenderProperties();
+            CRamCalc.SaveState();
         },
 
         OnListItemClick: function(item)
@@ -892,12 +865,14 @@ var CRamCalc =
             for (var i in calcInputsMap){
                 if(document.getElementById(calcInputsMap[i])){
                     document.getElementById(calcInputsMap[i]).checked = true;
+                    CRamCalc.PropertyValueChange(document.getElementById(calcInputsMap[i]).parentElement);
                 }
             }
 
             for (var i in calcSelectsMap){
                 if(document.getElementById(calcSelectsMap[i])){
                     document.getElementById(calcSelectsMap[i]).selected = true;
+                    CRamCalc.PropertyValueChange(document.getElementById(calcSelectsMap[i]).parentElement);
                 }
             }
 
@@ -911,6 +886,8 @@ var CRamCalc =
             }
 
             $(".ram-calc__calculation-result").text($.cookie("calcCookieResultPrice"+"_"+calcId));
+
+            CRamCalc.RenderProperties();
 
             console.log("Calc state is loaded");
         },
@@ -946,12 +923,12 @@ var CRamCalc =
             var propsString = "";
 
             form.find('input:checked').each(function(){
-                if($(this).data("price") !== false){
+                if($(this).data("price") !== 'none'){
                     properies.push($(this).data("name"));
                 }
             });
             form.find('select option:selected').each(function(){
-                if($(this).data("price") !== false){
+                if($(this).data("price") !== 'none'){
                     properies.push($(this).data("name"));
                 }
             });
@@ -992,10 +969,14 @@ var CRamCalc =
             var properies = [];
 
             form.find('input:checked').each(function(){
-                properies.push($(this).data("name"));
+                if($(this).data("price") != 'none'){
+                    properies.push($(this).data("name"));
+                }
             });
             form.find('select option:selected').each(function(){
-                properies.push($(this).data("name"));
+                if($(this).data("price") != 'none'){
+                    properies.push($(this).data("name"));
+                }
             });
 
             var requestData = {
@@ -1008,6 +989,7 @@ var CRamCalc =
                 sessid: $('input#sessid').val(),
                 file: $('input[name="FILES"]').val(),
                 quantity: $('input[name="QUANTITY"]').val(),
+                use_imprint: $('input[name="USE_IMPRINT"]').val(),
             };
 
             $.ajax({

@@ -40,7 +40,7 @@ if(strlen($arResult["OK_MESSAGE"]) > 0)
             <label for="user_phone">Тел. <input required placeholder="<?=GetMessage("MFT_PHONE")?>" type="text" name="user_phone" value="<?=$arResult["AUTHOR_PHONE"]?>"/></label>
         </div>
     </div>
-    <input type="hidden" name="recaptcha_response" id="recaptchaResponse-footer">
+    <input type="hidden" name="recaptcha_response">
     <input type="hidden" name="PARAMS_HASH" value="<?=$arResult["PARAMS_HASH"]?>">
     </div>
     <input title="Нажимая 'Отправить' вы соглашаетесь с политикой конфиденциальности." <?if(strlen($arResult["OK_MESSAGE"]) > 0 || isset($_GET['success'])):?>disabled<?endif;?> type="submit" class="section__button feedback-card__button btn" name="submit" value="<?=GetMessage("MFT_SUBMIT")?>"/>

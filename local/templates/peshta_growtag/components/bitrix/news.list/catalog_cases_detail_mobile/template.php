@@ -13,13 +13,17 @@
 $this->setFrameMode(true);
 ?>
 <div class="catalog-section-detail-cases__list d-flex mobile">
-<?foreach($arResult["ITEMS"] as $arItem):?>
-	<?
-	$this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
-	$this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
-	?>
-	<div class="list__item d-flex" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
-        <img src="https://peshta.growtag.ml/<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>"/>
-	</div>
-<?endforeach;?>
+    <?foreach($arResult["ITEMS"] as $arItem):?>
+        <?if($arParams["ELEMENT_ID"] == $arItem["ID"]):?>
+            <?
+            $this->AddEditAction($arItem['ID'], $arItem['EDIT_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_EDIT"));
+            $this->AddDeleteAction($arItem['ID'], $arItem['DELETE_LINK'], CIBlock::GetArrayByID($arItem["IBLOCK_ID"], "ELEMENT_DELETE"), array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM')));
+            ?>
+            <?foreach ($arItem["PROPERTIES"]["IMAGES"]["VALUE"] as $img):?>
+                <div class="list__item d-flex" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
+                    <img src="<?=CFile::GetPath($img);?>"/>
+                </div>
+            <?endforeach;?>
+        <?endif;?>
+    <?endforeach;?>
 </div>

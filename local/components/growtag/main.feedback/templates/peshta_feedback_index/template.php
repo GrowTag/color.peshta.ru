@@ -64,7 +64,7 @@ if(strlen($arResult["OK_MESSAGE"]) > 0)
         </label>
     </div>
     <div class="index-section-7__form-button mt-4">
-        <input type="hidden" name="recaptcha_response" id="recaptchaResponse-settlement-index">
+        <input type="hidden" name="recaptcha_response">
         <input type="hidden" name="PARAMS_HASH" value="<?=$arResult["PARAMS_HASH"]?>">
         <input title="Нажимая 'Заказать расчет' вы соглашаетесь с политикой конфиденциальности." <?if(strlen($arResult["OK_MESSAGE"]) > 0 || isset($_GET['success'])):?>disabled<?endif;?> type="submit" name="submit" value="Заказать расчет" class="red-button form-button"/>
     </div>

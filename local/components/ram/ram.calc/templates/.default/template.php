@@ -185,20 +185,21 @@ if ($arParams["MULTYPLE"] !== "Y")
                         ?></div>
                         <?
                     }
-                    ?></div>
-                <?if($arParams["SERVICE_ID"]["VALUE"]!=3):?>
-                <form action="<?=POST_FORM_ACTION_URI?>" method="POST" id="order-download-form" enctype="multipart/form-data">
-                    <div class="box file-hidden">
-                        <input type="file" name="file" id="file" class="inputfile inputfile-6" hidden onchange="CRamCalc.DownloadFile(this);">
-                        <label for="file">
-                            <strong>
-                                Прикрепить макет
-                            </strong>
-                            <span></span>
-                        </label>
-                    </div>
-                </form>
-                <?endif;?>
+                    ?>
+                    <?if($arParams["SERVICE_ID"]["VALUE"]!=3):?>
+                        <form action="<?=POST_FORM_ACTION_URI?>" method="POST" id="order-download-form" enctype="multipart/form-data">
+                            <div class="box file-hidden">
+                                <input type="file" name="file" id="file" class="inputfile inputfile-6" hidden onchange="CRamCalc.DownloadFile(this);">
+                                <label for="file">
+                                    <strong>
+                                        Прикрепить макет
+                                    </strong>
+                                    <span></span>
+                                </label>
+                            </div>
+                        </form>
+                    <?endif;?>
+                </div>
             </div>
             <div class="form__right col-md-4 col-sm-12 d-flex flex-column">
                 <div class="form__right-top d-flex justify-content-center">Ничего не выбрано</div>
@@ -221,6 +222,7 @@ if ($arParams["MULTYPLE"] !== "Y")
                     ?>
                 </div>
                 <div class="form__right-bottom d-flex justify-content-center">
+                    <input type="hidden" id="USE_IMPRINT" name="USE_IMPRINT" value="<?=$arParams["USE_IMPRINT"];?>">
                     <input type="hidden" id="USER_ID" name="USER_ID" value="<?=$USER->GetID();?>">
                     <input type="hidden" id="PRODUCT_NAME" name="PRODUCT_NAME" value="<?=$arParams["PRODUCT_NAME"]?>">
                     <input type="hidden" id="PRODUCT_ID" name="PRODUCT_ID" value="<?=$arParams["PRODUCT_ID"]?>">
@@ -316,7 +318,8 @@ if ($arParams["MULTYPLE"] !== "Y")
             });
         /*BX.message({"CONFIRM_CALCULATOR_DELETE": "<?=GetMessage("RAM_CALC_CONFIRM_CALCULATOR_DELETE")?>"});*/
         /*CRamCalc.RoundResult();*/
-        if($.cookie("calcCookieInputs") == null || $.cookie("calcCookieSelects") == null || $.cookie("calcCookieHiddens") == null){
+        let calcId = $(".ram-calc__calculator").attr("id");
+        if($.cookie("calcCookieInputs"+"_"+calcId) == null || $.cookie("calcCookieSelects"+"_"+calcId) == null || $.cookie("calcCookieHiddens"+"_"+calcId) == null || $.cookie("calcCookieResultPrice"+"_"+calcId) == null){
             CRamCalc.SaveState();
         }
         CRamCalc.LoadState();

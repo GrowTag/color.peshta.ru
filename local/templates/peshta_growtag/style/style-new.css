@@ -750,7 +750,7 @@ body::-webkit-scrollbar-track {
     background: #FA3F3F url("../images/index-section-3-bg.png") no-repeat right bottom;
     padding-top: 60px;
     padding-bottom: 60px;
-    background-size: 20%;
+    background-size: 19%;
 }
 .index-section-3__title {
     font-family: Montserrat;
@@ -1260,7 +1260,8 @@ footer .footer-copyright a:hover {
     margin-bottom: 24px;
 }
 .catalog-section-detail-content img {
-    margin-right: 31px;
+    margin-right: 10px;
+    padding-bottom: 5px;
 }
 .catalog-section-detail-video iframe {
     width: 100%;
@@ -1288,7 +1289,13 @@ footer .footer-copyright a:hover {
     overflow: hidden;
 }
 .catalog-detail-section-order__form .form__left {
-    padding: 43px 32px;
+    padding: 43px 32px 25px 32px;
+    display: flex;
+    align-items: center;
+}
+.catalog-detail-section-order__form .ram-calc__calculator-properties .ram-calc__property:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 .catalog-detail-section-order__form .form__right {
     background: #F4F4F4;
@@ -2138,6 +2145,7 @@ footer ul li a:hover {
     }
     .catalog-section-detail-content {
         margin-bottom: 32px;
+        overflow: hidden;
     }
     .catalog-section-detail-content p {
         margin: 0;

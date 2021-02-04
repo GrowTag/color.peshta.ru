@@ -72,38 +72,42 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 }
 
                 //Скидка пользователя
-                $arParamsUser = array("SELECT" => array("UF_*"));
-                $arFilterUser = array("ID" => htmlspecialcharsbx($_POST["user_id"]));
-                $rsUser = CUser::GetList(($by="ID"), ($order="ASC"), $arFilterUser, $arParamsUser);
-                $arUser = $rsUser->Fetch();
+                if(isset($_POST["use_imprint"]) && $_POST["use_imprint"] == "Y"){
+                    $arParamsUser = array("SELECT" => array("UF_*"));
+                    $arFilterUser = array("ID" => htmlspecialcharsbx($_POST["user_id"]));
+                    $rsUser = CUser::GetList(($by="ID"), ($order="ASC"), $arFilterUser, $arParamsUser);
+                    $arUser = $rsUser->Fetch();
 
-                if(!isset($arUser["UF_IMPRINT"]) || empty($arUser["UF_IMPRINT"])){
-                    $arResult["USER_IMPRINT"] = 0;
-                } else {
-                    $arResult["USER_IMPRINT"] = $arUser["UF_IMPRINT"];
-                }
+                    if(!isset($arUser["UF_IMPRINT"]) || empty($arUser["UF_IMPRINT"])){
+                        $arResult["USER_IMPRINT"] = 0;
+                    } else {
+                        $arResult["USER_IMPRINT"] = $arUser["UF_IMPRINT"];
+                    }
 
-
-                // Скидки из иноблока
-                $arSelect = Array("ID", "NAME", "PROPERTY_WIDGET_TEXT", "PROPERTY_TO", "PROPERTY_FROM", "PROPERTY_DISCOUNT");
-                $arFilter = Array(
-                    "IBLOCK_ID"=>IntVal($arParams["DISCOUNT_IBLOCK_ID"]),
-                    "ACTIVE_DATE"=>"Y",
-                    "ACTIVE"=>"Y",
-                );
-                $res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>50), $arSelect);
-                while($ob = $res->GetNextElement())
-                {
-                    $arFields = $ob->GetFields();
-                    if($arFields['PROPERTY_FROM_VALUE'] <= $arResult["USER_IMPRINT"] && ($arFields['PROPERTY_TO_VALUE'] > $arResult["USER_IMPRINT"] || $arFields['PROPERTY_TO_VALUE'] == 0)){
-                        if($arFields['PROPERTY_DISCOUNT_VALUE'] == 0 || empty($arFields['PROPERTY_DISCOUNT_VALUE'])){
-                            $arResult["USER_DISCOUNT_PRICE"] = $arResult["PRODUCT"]["PRICE"];
-                            $arResult["DISCOUNT_VALUE"] = 0;
-                        } else {
-                            $arResult["USER_DISCOUNT_PRICE"] = $arResult["PRODUCT"]["PRICE"] * (1 - $arFields['PROPERTY_DISCOUNT_VALUE'] / 100);
-                            $arResult["DISCOUNT_VALUE"] = $arFields['PROPERTY_DISCOUNT_VALUE'];
+                    // Скидки из иноблока
+                    $arSelect = Array("ID", "NAME", "PROPERTY_WIDGET_TEXT", "PROPERTY_TO", "PROPERTY_FROM", "PROPERTY_DISCOUNT");
+                    $arFilter = Array(
+                        "IBLOCK_ID"=>IntVal($arParams["DISCOUNT_IBLOCK_ID"]),
+                        "ACTIVE_DATE"=>"Y",
+                        "ACTIVE"=>"Y",
+                    );
+                    $res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>50), $arSelect);
+                    while($ob = $res->GetNextElement())
+                    {
+                        $arFields = $ob->GetFields();
+                        if($arFields['PROPERTY_FROM_VALUE'] <= $arResult["USER_IMPRINT"] && ($arFields['PROPERTY_TO_VALUE'] > $arResult["USER_IMPRINT"] || $arFields['PROPERTY_TO_VALUE'] == 0)){
+                            if($arFields['PROPERTY_DISCOUNT_VALUE'] == 0 || empty($arFields['PROPERTY_DISCOUNT_VALUE'])){
+                                $arResult["USER_DISCOUNT_PRICE"] = $arResult["PRODUCT"]["PRICE"];
+                                $arResult["DISCOUNT_VALUE"] = 0;
+                            } else {
+                                $arResult["USER_DISCOUNT_PRICE"] = $arResult["PRODUCT"]["PRICE"] * (1 - $arFields['PROPERTY_DISCOUNT_VALUE'] / 100);
+                                $arResult["DISCOUNT_VALUE"] = $arFields['PROPERTY_DISCOUNT_VALUE'];
+                            }
                         }
                     }
+                } else {
+                    $arResult["USER_DISCOUNT_PRICE"] = $arResult["PRODUCT"]["PRICE"];
+                    $arResult["DISCOUNT_VALUE"] = 0;
                 }
 
                 // Округляем цены в большую сторону
@@ -124,7 +128,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                     'IGNORE_CALLBACK_FUNC' => 'Y',
                     'LID' => SITE_ID,
                 );
-                
+
                 // Готовим заказ в корзину
                 $basket = Bitrix\Sale\Basket::create(SITE_ID);
 

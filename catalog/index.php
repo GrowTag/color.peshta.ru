@@ -486,8 +486,8 @@ $APPLICATION->SetTitle("Каталог");
     <div class="container">
         <div class="row align-items-center">
             <div class="index-section-7__text col-md-6">
-                <span>Мы на связи</span>
                 <div class="index-section-7__title">
+                    <span>Мы на связи</span>
                     Закажите расчет и мы свяжемся с вами в течение 30 минут
                 </div>
             </div>
