@@ -44,9 +44,14 @@ if($arSection = $dbSection->GetNext()){
         );
         ?>
             <div class="link" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
-                <a href="<?echo $arItem["DETAIL_PAGE_URL"]?>">
+                <a itemprop="url" href="<?echo $arItem["DETAIL_PAGE_URL"]?>">
                     <div class="link__title">
-                        <?echo $arItem["NAME"]?>
+                        <?if(empty($arItem["PROPERTIES"]["MENU_NAME"]["VALUE"])){
+                            print $arItem["NAME"];
+                        } else {
+                            print $arItem["PROPERTIES"]["MENU_NAME"]["VALUE"];
+                        }
+                        ?>
                     </div>
                 </a>
             </div>

@@ -1,4 +1,4 @@
-<footer>
+<footer itemscope itemtype="http://schema.org/WPFooter">
     <div class="container">
         <div class="footer-wrap d-flex bd-highlight">
             <div class="p-2 bd-highlight">
@@ -9,7 +9,7 @@
                     г. Ижевск, ул. Кирова, 113
                 </address>
                 <div class="footer-time">
-                    Пн. – Пт. с 09:00 до 20:00
+                    Пн. – Пт. с 09:00 до 18:00
                 </div>
                 <div class="footer-phone mt-4">
                     <a href="tel:+73412400200">+7 (3412) 400-200</a>
@@ -69,6 +69,8 @@
             ООО "ПЕЧАТНЫЙ САЛОН"&copy; <?=date("Y")?> Все&nbsp;права&nbsp;защищены.&nbsp;<a href="/privacy/">Политика конфиденциальности</a>
         </div>
     </div>
+    <meta itemprop="copyrightYear" content="<?=date("Y")?>">
+    <meta itemprop="copyrightHolder" content='ООО "ПЕЧАТНЫЙ САЛОН"'>
 </footer>
 <?$APPLICATION->IncludeComponent(
     "growtag:main.feedback",
@@ -161,22 +163,7 @@
         widget.subscribe({
             type: BX.LiveChatWidget.SubscriptionType.userMessage,
             callback: function(data) {
-                // любая команда
-                if (typeof(dataLayer) == 'undefined')
-                {
-                    dataLayer = [];
-                }
-                dataLayer.push({
-                    "ecommerce": {
-                        "purchase": {
-                            "actionField": {
-                                "id" : "konsultant",
-                                "goal_id" : "141738124"
-                            },
-                            "products": [ {} ]
-                        }
-                    }
-                });
+                return ym(65948923,'reachGoal','konsultant');
             }
         });
     });

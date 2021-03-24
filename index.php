@@ -398,39 +398,41 @@ $APPLICATION->SetTitle("Пешта");
 		</div>
 	</div>
 </div>
- </section> <section class="index-section-7" id="index-section-7">
-<div class="container">
-	<div class="row align-items-center">
-		<div class="index-section-7__text col-md-6">
-			<div class="index-section-7__title">
-                <span>Мы на связи</span>
-				 Закажите расчет и мы свяжемся с вами в течение 30 минут
-			</div>
-		</div>
-		<div class="index-section-7__form col-md-6 p-5">
-			<div class="index-section-7__form-title">
-				 Закажите расчет стоимости в 2 клика
-			</div>
-			 <?$APPLICATION->IncludeComponent(
-	"growtag:main.feedback",
-	"peshta_feedback_index",
-	Array(
-		"COMPONENT_TEMPLATE" => "peshta_feedback_index",
-		"EMAIL_TO" => "",
-		"EVENT_MESSAGE_ID" => array(0=>"26",),
-		"OK_TEXT" => "Заявка на обратный звонок успешно отправлена. Ожидайте звонка наших менеджеров.",
-		"REQUIRED_FIELDS" => array(0=>"NAME",),
-		"USER_CONSENT" => "N",
-		"USER_CONSENT_ID" => "0",
-		"USER_CONSENT_IS_CHECKED" => "Y",
-		"USER_CONSENT_IS_LOADED" => "N",
-		"USE_CAPTCHA" => "N"
-	)
-);?>
-		</div>
-	</div>
-</div>
- </section> <section class="index-section-8">
+ </section>
+<section class="index-section-7" id="index-section-7">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="index-section-7__text col-md-6">
+                <div class="index-section-7__title">
+                    <span>Мы на связи</span>
+                    Закажите расчет и мы свяжемся с вами в течение 30 минут
+                </div>
+            </div>
+            <div class="index-section-7__form col-md-6 p-5">
+                <div class="index-section-7__form-title">
+                    Закажите расчет стоимости в 2 клика
+                </div>
+                <?$APPLICATION->IncludeComponent(
+                    "growtag:main.feedback",
+                    "peshta_feedback_index",
+                    Array(
+                        "COMPONENT_TEMPLATE" => "peshta_feedback_index",
+                        "EMAIL_TO" => "",
+                        "EVENT_MESSAGE_ID" => array(0=>"26",),
+                        "OK_TEXT" => "Заявка на обратный звонок успешно отправлена. Ожидайте звонка наших менеджеров.",
+                        "REQUIRED_FIELDS" => array(0=>"NAME",),
+                        "USER_CONSENT" => "N",
+                        "USER_CONSENT_ID" => "0",
+                        "USER_CONSENT_IS_CHECKED" => "Y",
+                        "USER_CONSENT_IS_LOADED" => "N",
+                        "USE_CAPTCHA" => "N"
+                    )
+                );?>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="index-section-8">
 <div class="container">
 	<div class="row justify-content-center">
 		<div class="index-section__title">

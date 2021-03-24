@@ -14,7 +14,11 @@ if(!defined("B_PROLOG_INCLUDED")||B_PROLOG_INCLUDED!==true)die();
 {?>
     <script type="text/javascript">
         $(document).ready(function() {
-            toastr.error('Что-то пошло не так... Попробуйте еще раз!', 'УПС!...');
+            toastr.error('<?
+                foreach($arResult["ERROR_MESSAGE"] as $res){
+                    print $res."\n\r";
+                }
+                ?>', 'УПС!...');
         });
     </script>
 <?}
@@ -60,7 +64,7 @@ if(strlen($arResult["OK_MESSAGE"]) > 0)
                 <input type="hidden" name="recaptcha_response">
                 <input type="hidden" name="PARAMS_HASH" value="<?=$arResult["PARAMS_HASH"]?>">
                 <input type="hidden" name="SUBSCRIBE" value="true">
-                <input title="Нажимая 'Получить календарь скидок' вы соглашаетесь с политикой конфиденциальности." <?if(strlen($arResult["OK_MESSAGE"]) > 0 || isset($_GET['success'])):?>disabled<?endif;?> type="submit" name="submit" value="Получить календарь скидок" class="red-button form-button">
+                <input onclick="ym(65948923,'reachGoal','order');return true;" title="Нажимая 'Получить календарь скидок' вы соглашаетесь с политикой конфиденциальности." <?if(strlen($arResult["OK_MESSAGE"]) > 0 || isset($_GET['success'])):?>disabled<?endif;?> type="submit" name="submit" value="Получить календарь скидок" class="red-button form-button">
             </form>
             <div class="form-subscribe-privacy">
                 Нажимая 'Получить календарь скидок' вы соглашаетесь с <a href="/privacy/">политикой конфиденциальности</a>

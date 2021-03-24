@@ -3,7 +3,7 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Каталог");
 ?>
 <div class="catalog-section-1">
-    <div class="cointainer">
+    <div class="container">
         <div class="row justify-content-center align-items-center">
             <div class="catalog-section-1__title">
                 <h1>Каталог продукции</h1>

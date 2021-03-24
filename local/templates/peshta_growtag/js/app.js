@@ -54,6 +54,26 @@ $(document).ready(function(){
         infinite: false,
         arrows: false,
     });
+
+    $('.digital-slider').slick({
+        arrows: false,
+        dots: false,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 3,
+        adaptiveHeight: false,
+        autoplay: false,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: false,
+                    slidesToShow: 1,
+                    adaptiveHeight: false,
+                    dots: true
+                }
+            }]
+    });
 });
 
 /********** PRELOADER **********
@@ -77,12 +97,20 @@ window.onload = function(){
 ********** RECAPTCHA **********/
 var onloadCallbackRecap = function() {
     grecaptcha.ready(function () {
-        grecaptcha.execute('6Lf9BLcZAAAAAB05N0PUYAIeA98FEOx_AosAvT67', { action: 'contact_callback' }).then(function (token) {
-            var inputs = document.getElementsByName("recaptcha_response");
-            inputs.forEach(el => el.value = token);
-        });
+        reCaptchaExe();
+        setInterval(function(){
+            reCaptchaExe();
+        }, 40000);
     });
-};
+}
+
+function reCaptchaExe() {
+    grecaptcha.execute('6Lf9BLcZAAAAAB05N0PUYAIeA98FEOx_AosAvT67', { action: 'contact_callback' }).then(function (token) {
+        var inputs = document.getElementsByName("recaptcha_response");
+        inputs.forEach(el => el.value = token);
+    });
+    console.log('reCaptcha v3 token is updated');
+}
 /********** MASKEDINPUT **********/
 $(function(){
     $("input[name='user_phone']").mask("+7 (999) 999-99-99");

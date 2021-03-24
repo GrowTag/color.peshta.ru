@@ -6,484 +6,242 @@ $APPLICATION->SetPageProperty("title", "ПЕШТА - Срочная печать
 $APPLICATION->SetTitle("Цифровая печать");
 $APPLICATION->SetPageProperty('canonical', "https://".$_SERVER['HTTP_HOST'].$APPLICATION->GetCurPage());
 ?>
-<style>
-    footer {
-        margin-bottom: 0px !important;
-        margin-left 0px !important;
-        margin-right: 0px !important;
-    }
-    h1 {
-         font-size: 32px;
-    }
-
-    .first-digital-section {
-        background: url(/local/templates/peshta_growtag/images/first-digital-section.png) center no-repeat, linear-gradient(90deg,#c2c2c4, #bbbabd);
-    }
-    .first-digital-section .title-wrap {
-        margin-top: 40px;
-        margin-bottom: 40px;
-        padding:40px;
-        background: #ffffff;
-        text-align: left;
-    }
-    .first-digital-section .title-wrap .p-description {
-        font-size: 18px;
-        line-height: 24px;
-        color: #5B636F;
-    }
-    .first-digital-section .title-wrap .span-title {
-        font-size: 20px;
-        line-height: 24px;
-        letter-spacing: 0.02em;
-        color: #185DC5;
-    }
-    .first-digital-section .title-wrap .orange-wrap {
-        flex-direction: row;
-        padding: 20px 15px;
-        position: absolute;
-        width: 270px;
-        left: 90%;
-        top: 65%;
-        background: #FF6E3A;
-        font-size: 12px;
-        line-height: 20px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: #FFFFFF;
-        font-weight: 700;
-    }
-    .second-digital-section {
-        padding: 40px;
-        background: url(/local/templates/peshta_growtag/images/main-digital-section-bg.png) repeat-y;
-        background-size: cover;
-        background-color: #f3f3f3;
-        background-position-y: 50px;
-    }
-    .digital-last-section {
-        padding: 40px;
-        background-color: #f3f3f3;
-    }
-    .second-digital-section .content {
-        background: #FFFFFF;
-        box-shadow: 0px 4px 26px #DBDDDE;
-        padding: 40px;
-        max-width: 1200px;
-        display: flex;
-    }
-    .second-digital-section .content img {
-        width: 100%;
-    }
-    .second-digital-section .content .nav, .digital-last-section .nav {
-        position: unset;
-        width: 100%;
-        background: none;
-    }
-    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-        font-weight: 600;
-        font-size: 24px;
-        line-height: 28px;
-        display: flex;
-        align-items: center;
-        letter-spacing: 0.02em;
-        color: #E40E16;
-        background-color: unset;
-        border-color: unset;
-        border: unset;
-        text-decoration: underline;
-    }
-    .nav-tabs .nav-link {
-        font-weight: 600;
-        font-size: 24px;
-        line-height: 28px;
-        display: flex;
-        align-items: center;
-        letter-spacing: 0.02em;
-        color: #000000;
-        background-color: unset;
-        border-color: unset;
-        border: unset;
-    }
-    .nav-tabs {
-        border-bottom: 0px;
-    }
-    .tab-content {
-        text-align: left;
-        padding-left: 30px !important;
-    }
-    .tab-content .why-speed {
-        font-weight: 500;
-        font-size: 22px;
-        line-height: 28px;
-        color: #ffffff;
-        padding: 8px 16px;
-        background: #185DC5;
-    }
-    .tab-content .tab-content-list {
-
-    }
-    .tab-content .tab-content-list div ul {
-        margin-top: 15px;
-        list-style: none;
-    }
-    .tab-content .tab-content-list div ul li {
-        color: #5B636F;
-        line-height: 25px;
-    }
-    .tab-content .tab-content-list div ul li::before {
-        content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
-        color: #185DC5; /* Change the color */
-        font-weight: bold; /* If you want it to be bold */
-        display: inline-block; /* Needed to add space between the bullet and the text */
-        width: 1em; /* Also needed for space (tweak if needed) */
-        margin-left: -1em; /* Also needed for space (tweak if needed) */
-    }
-    .tab-content .tab-content-list div {
-        padding-left: 30px;
-        font-size: 16px;
-        line-height: 20px;
-        margin-bottom: 15px;
-        padding-top: 3px;
-    }
-    .tab-content .tab-content-list div:nth-child(1){
-        background: url(/local/templates/peshta_growtag/images/li1.png) top left no-repeat;
-    }
-    .tab-content .tab-content-list div:nth-child(2){
-        background: url(/local/templates/peshta_growtag/images/li2.png) top left no-repeat;
-    }
-    .tab-content .tab-content-list div:nth-child(3){
-        background: url(/local/templates/peshta_growtag/images/li3.png) top left no-repeat;
-    }
-    .tab-content .tab-content-list div:nth-child(4){
-        background: url(/local/templates/peshta_growtag/images/li4.png) top left no-repeat;
-    }
-    .tab-content p {
-        font-size: 22px;
-        line-height: 30px;
-        color: #5B636F;
-    }
-    .digital-last-section {
-        padding-bottom: 70px;
-    }
-    .digital-last-section h2 {
-        text-align: left;
-        font-size: 36px;
-        line-height: 40px;
-        color: #000000;
-        padding-left: 40px;
-    }
-    a.red-button {
-        text-decoration: none;
-        font-weight: 600;
-        display: inline-block;
-        margin-top: 20px;
-        padding: 16px 48px;
-        background: linear-gradient(180deg, #E40E16 0%, #CD0C13 99.48%);
-        color: #ffffff;
-        text-transform: uppercase;
-        transition: .5s all;
-    }
-    a.red-button:hover {
-        padding: 16px 48px;
-        background: linear-gradient(180deg, #E40E16 0%, #CD0C13 99.48%);
-        box-shadow: 0px 4px 24px rgba(228, 14, 22, 0.5);
-        color: #ffffff;
-        text-transform: uppercase;
-        transition: .5s all;
-    }
-    a.red-button:focus{
-        padding: 16px 48px;
-        background: linear-gradient(180deg, #E40E16 0%, #CD0C13 99.48%);
-        box-shadow: 0px 4px 4px rgba(228, 14, 22, 0.5);
-        color: #ffffff;
-        text-transform: uppercase;
-        transition: .5s all;
-
-    }
-    .question-wrap {
-        background: url(/local/templates/peshta_growtag/images/krugi.png) top left no-repeat;
-        padding-top: 5em;
-        padding-left: 5em;
-    }
-    .question {
-        background: #185DC5;
-        border-radius: 32px;
-        padding:3em;
-        text-align: left;
-    }
-    .question::after {
-        content: "";
-        color: #185DC5;
-        display: block;
-        width: 133px;
-        position: absolute;
-        right: -30px;
-        bottom: 0px;
-        height: 133px;
-        background: url(/local/templates/peshta_growtag/images/strelka.png) center no-repeat;
-        background-size: contain;
-    }
-    .question .question__title {
-        font-size: 24px;
-        line-height: 32px;
-        color: #FFFFFF;
-        font-weight: 600;
-    }
-    .question .question__description {
-        font-size: 20px;
-        line-height: 24px;
-        letter-spacing: 0.02em;
-        color: #FFFFFF;
-    }
-    @media (max-width: 1244px) {
-        .first-digital-section .title-wrap {
-            max-width: 100%;
-        }
-        .first-digital-section .title-wrap .orange-wrap {
-            position: unset;
-            margin-top: 20px;
-        }
-
-    }
-    @media (max-width: 1200px){
-        .second-section-content-img {
-            display: none;
-        }
-        .second-section-content-text {
-            max-width: 100%;
-            flex: 100%;
-            padding: 0;
-        }
-        .second-digital-section .content {
-            padding: 0;
-        }
-    }
-    @media (max-width: 1000px){
-        .question-wrap {
-            background: url(/local/templates/peshta_growtag/images/krugi.png) top left no-repeat;
-            padding-top: 4em;
-            padding-left: 0em;
-        }
-    }
-    @media (max-width: 768px){
-        .question {
-            background: #185DC5;
-            border-radius: 32px;
-            padding: 2em;
-            text-align: left;
-        }
-        .second-digital-section .content .nav, .digital-last-section .nav {
-            position: initial;
-            width: unset;
-            max-width: unset;
-            min-width: unset;
-        }
-        .nav-tabs {
-            border-bottom: 0px;
-            padding-left: 0;
-            padding-right: 0;
-            display: flex;
-            justify-content: center;
-        }
-        .digital-last-section .nav-link {
-            font-size: 20px !important;
-        }
-        .container-fluid {
-            padding: 0;
-        }
-        .digital-last-section {
-            padding: 10px;
-            padding-bottom: 40px;
-        }
-        .digital-last-section .tab-content {
-            text-align: center !important;
-        }
-        .digital-last-section h2 {
-            text-align: center;
-            font-size: 36px !important;
-            line-height: 40px;
-            color: #000000;
-            padding-left: 0;
-        }
-        a.red-button {
-            text-decoration: none;
-            text-align: center;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 20px;
-            padding: 15px 30px;
-            background: linear-gradient(180deg, #E40E16 0%, #CD0C13 99.48%);
-            color: #ffffff;
-            text-transform: uppercase;
-            transition: .5s all;
-        }
-
-        .question-wrap {
-            padding-right: 0;
-            margin-bottom: 60px;
-        }
-        .question::after {
-            transform: matrix(-0.71, 0.71, 0.71, 0.71, 0, 0);
-            bottom: -80px;
-            right: 20px;
-        }
-        .first-digital-section {
-            padding-left: 0;
-            padding-right: 0;
-            background: url(/local/templates/peshta_growtag/images/first-digital-section.png) top no-repeat;
-            background-size: contain;
-            padding-top: 40px;
-        }
-        .first-digital-section .title-wrap {
-            padding: 20px !important;
-        }
-        .second-digital-section, .second-digital-section .container {
-            padding-left:0;
-            padding-right:0;
-        }
-        .orange-wrap {
-            width: 100% !important;
-        }
-        .why-speed {
-            font-size: 16px !important;
-            display: block;
-            width: 100%;
-            text-align: center;
-        }
-        .tab-content {
-            text-align: left;
-            padding: 10px !important;
-        }
-        .second-section-content-text .tab-content>.tab-pane {
-            display: block;
-            margin-bottom: 40px;
-        }
-        .second-section-content-text .fade:not(.show) {
-            opacity: 1;
-        }
-        .second-section-content-text li.nav-item {
-            display: none;
-        }
-    }
-    @media (max-width: 576px){
-        .section {
-            padding-top: 40px;
-        }
-    }
-</style>
-<div class="section first-digital-section d-flex">
+<section class="digital-section-1">
     <div class="container">
-        <div class="title-wrap col-md-6 col-sm-12">
-            <span class="span-title">цифровая печать</span>
-            <h1 class="title mt-4 mb-3">Срочная печать и персонализация маркетинговых материалов</h1>
-            <p class="p-description m-0">Выйдите на новый уровень скорости печати и результативности продаж, маркетинга и рекламы с цифровыми технологиями «Пешта Digital®»</p>
-            <div class="orange-wrap">
-                Получайте от маркетинговых материалов больше отдачи!
+        <div class="row justify-content-center align-items-center">
+            <div class="digital-section-1__title">
+                <h1>Будьте впереди конкурентов<br/>с программой Пешта Digital!</h1>
             </div>
         </div>
     </div>
-</div>
-<div class="section second-digital-section d-flex">
-    <div class="container d-flex justify-content-center">
-            <div class="content col-md-12">
-                <div class="col-md-8 col-sm-12 second-section-content-text">
-                    <div class="container-fluid">
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#description">Важна скорость</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#characteristics">Важна результативность</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content p-3">
-                            <div class="tab-pane fade show active" id="description">
-                                <span class="why-speed">Почему важна скорость?</span>
-                                <div class="tab-content-list mt-5">
-                                    <div>
-                                        Ваши клиенты не хотят больше ждать!
-                                    </div>
-                                    <div>
-                                        Ваш маркетинг и продажи должны реагировать на запросы клиентов немедленно и «играть на опережение» против конкурентов!
-                                    </div>
-                                    <div>
-                                        Цифровая печать по требованию позволяет получить:
-                                        <ul>
-                                            <li>столько копий, сколько нужно</li>
-                                            <li>тогда, когда нужно</li>
-                                            <li>там, где нужно</li>
-                                            <li>с самой новой информацией</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        Возврат на инвестиции в печать по требованию выше на 25%, чем при обычном заказе печатной продукции!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="characteristics">
-                                <span class="why-speed">Почему важна результативность?</span>
-                                <div class="tab-content-list mt-5">
-                                    <div>
-                                        Ваши Клиенты хотят индивидуального подхода и особого отношения
-                                    </div>
-                                    <div>
-                                        Персонализированные обращения и индивидуальные предложения повышают коныерсию в продажи на 35%
-                                    </div>
-                                    <div>
-                                        Возврат на инвестиции в персонализированные маркетинговые кампании в среднем на 21% больше!
-                                    </div>
-                                    <div>
-                                        Возврат на инвестиции в персонализированные почтовые рассылки + e-mail в среднем на 39% больше, чем только от e-mail.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 second-section-content-img">
-                    <img src="<?=SITE_TEMPLATE_PATH?>/images/second-section-content.png"/>
-                </div>
-        </div>
-    </div>
-</div>
-<div class="section digital-last-section">
+</section>
+<section class="digital-section-2">
     <div class="container">
-        <div class="row">
-            <div class="col-md-4 question-wrap">
-                <div class="question">
-                    <div class="question__title mb-2">
-                        Скажите нет!
+        <div class="row justify-content-center">
+            <h2 class="section-title">
+                Что вы получаете от программы <br/>Пешта Digital
+            </h2>
+        </div>
+        <div class="digital-slider row align-items-center justify-content-center">
+            <div class="col-md-4 col-sm-12 p-0">
+                <div class="digital-slider__item">
+                    <div class="digital-slider__item-title">
+                        СКОРОСТЬ
                     </div>
-                    <div class="question__description">складам,<br/>большим тиражам,<br/>лишним расходам и проигранным сделкам!
+                    <div class="digital-slider__item-text">
+                        Готовность цифрового заказа от 60 минут. Благодаря такой скорости вы сможете оперативно реагировать на любые изменения рынка, срочно запустить маркетинговую акцию и подготовится к неожиданной встрече с клиентом
                     </div>
                 </div>
             </div>
-            <div class="col-md-8 p-0">
-                <h2 class="mt-4">Что для вас сейчас важнее?</h2>
-                <div class="container-fluid">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#speed">Важна скорость</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#result">Важна результативность</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content p-3">
-                        <div class="tab-pane fade show active" id="speed">
-                            <p>Нужно оперативно печатать маркетинговые материалы и снижать расходы на печать?</p>
-                            <a class="red-button" href="/digital/speed/">получите предложение</a>
-                        </div>
-                        <div class="tab-pane fade" id="result">
-                            <p>Нужно оперативно печатать маркетинговые материалы и снижать расходы на печать?</p>
-                            <a class="red-button" href="/digital/result/">получите предложение</a>
-                        </div>
+            <div class="col-md-4 col-sm-12 p-0">
+                <div class="digital-slider__item">
+                    <div class="digital-slider__item-title">
+                        ЭКОНОМИЯ
                     </div>
+                    <div class="digital-slider__item-text">
+                        Благодаря накопительной системе вы экономите до 30% бюджета на цифровую печать. Таким образом, чем больше вы печатаете, тем дешевле для вас становится печать
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 p-0">
+                <div class="digital-slider__item">
+                    <div class="digital-slider__item-title">
+                        ПЕРСОНАЛИЗАЦИЯ
+                    </div>
+                    <div class="digital-slider__item-text">
+                        Благодаря современной технологии персонализации вы можете повысить конверсию до 45%. Ведь обращаясь напрямую к вашему клиенту, он чувствует индивидуальный подход и личное внимание именно к нему                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
+<section class="digital-section-3">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <h2 class="section-title">
+                Как работает программа Пешта Digital
+            </h2>
+        </div>
+        <div class="step step-1 row justify-content-center align-items-center">
+            <div class="step-left col-md-6 col-sm-12">
+                <div class="step-title">
+                    ЭТАП ПЕРВЫЙ
+                </div>
+                <div class="step-left__title">
+                    Вы оставляете заявку
+                </div>
+                <div class="step-left__text">
+                    Вы оставляете заявку на цифровую печать в типографии Пешта. Делая заказ, вы автоматически вступаете в программу Пешта Digital и можете пользоваться всеми преимуществами этой программы.
+                </div>
+            </div>
+            <div class="step-right col-md-6 col-sm-12">
+                <div class="step-right__title">
+                    РЕЗУЛЬТАТ
+                </div>
+                <div class="step-right__text">
+                    Мы связываемся с вами в течение 30 минут, обговариваем все детали заказа, помогаем выбрать оптимальный вариант.
+                </div>
+            </div>
+        </div>
+        <div class="step step-2 row justify-content-center align-items-center">
+            <div class="step-left col-md-6 col-sm-12">
+                <div class="step-title">
+                    ЭТАП ВТОРОЙ
+                </div>
+                <div class="step-left__title">
+                    Мы готовим ваш заказ
+                </div>
+                <div class="step-left__text">
+                    Печатаем ваш заказ в оттисках (лист формата А3). Количество напечатанных оттисков надежно хранится в нашей системе. Выполняем все необходимые послепечатные работы и выдаем вам готовый заказ.                </div>
+            </div>
+            <div class="step-right col-md-6 col-sm-12">
+                <div class="step-right__title">
+                    РЕЗУЛЬТАТ
+                </div>
+                <div class="step-right__text">
+                    Качественную печать в срок, с использованием современных технологий печати
+                </div>
+            </div>
+        </div>
+        <div class="step step-3 row justify-content-center align-items-center">
+            <div class="step-left col-md-6 col-sm-12">
+                <div class="step-title">
+                    ЭТАП ТРЕТИЙ
+                </div>
+                <div class="step-left__title">
+                    Накопительная система в действии
+                </div>
+                <div class="step-left__text">
+                    При каждом новом заказе количество напечатанных оттисков суммируется. Как только вы накопите необходимое количество оттисков, за вами закрепляется специальная скидка, которая не обнуляется и не пропадает.                </div>
+            </div>
+            <div class="step-right col-md-6 col-sm-12">
+                <div class="step-right__title">
+                    РЕЗУЛЬТАТ
+                </div>
+                <div class="step-right__text">
+                    Просто заказывая необходимые вам полиграфические материалы, вы получаете скидку, которая навсегда закрепляется за вами                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="digital-section-4">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <h2 class="section-title">
+                Как считается ваша скидка
+            </h2>
+        </div>
+        <div class="table-div row" style="border-radius: 4px;overflow: hidden">
+            <?$APPLICATION->IncludeComponent(
+                "bitrix:main.include",
+                ".default",
+                array(
+                    "AREA_FILE_SHOW" => "file",
+                    "AREA_FILE_SUFFIX" => "inc",
+                    "AREA_FILE_RECURSIVE" => "Y",
+                    "EDIT_TEMPLATE" => "",
+                    "COMPONENT_TEMPLATE" => ".default",
+                    "PATH" => "/digital/table.php"
+                ),
+                false
+            );?>
+        </div>
+    </div>
+</section>
+<section class="digital-section-5">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <h2 class="section-title">
+                Часто задаваемые вопросы
+            </h2>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <?$APPLICATION->IncludeComponent("bitrix:news.list", "faq", Array(
+                "ACTIVE_DATE_FORMAT" => "d.m.Y",	// Формат показа даты
+                "ADD_SECTIONS_CHAIN" => "Y",	// Включать раздел в цепочку навигации
+                "AJAX_MODE" => "N",	// Включить режим AJAX
+                "AJAX_OPTION_ADDITIONAL" => "",	// Дополнительный идентификатор
+                "AJAX_OPTION_HISTORY" => "N",	// Включить эмуляцию навигации браузера
+                "AJAX_OPTION_JUMP" => "N",	// Включить прокрутку к началу компонента
+                "AJAX_OPTION_STYLE" => "Y",	// Включить подгрузку стилей
+                "CACHE_FILTER" => "N",	// Кешировать при установленном фильтре
+                "CACHE_GROUPS" => "Y",	// Учитывать права доступа
+                "CACHE_TIME" => "36000000",	// Время кеширования (сек.)
+                "CACHE_TYPE" => "A",	// Тип кеширования
+                "CHECK_DATES" => "Y",	// Показывать только активные на данный момент элементы
+                "DETAIL_URL" => "",	// URL страницы детального просмотра (по умолчанию - из настроек инфоблока)
+                "DISPLAY_BOTTOM_PAGER" => "N",	// Выводить под списком
+                "DISPLAY_DATE" => "Y",	// Выводить дату элемента
+                "DISPLAY_NAME" => "Y",	// Выводить название элемента
+                "DISPLAY_PICTURE" => "Y",	// Выводить изображение для анонса
+                "DISPLAY_PREVIEW_TEXT" => "Y",	// Выводить текст анонса
+                "DISPLAY_TOP_PAGER" => "N",	// Выводить над списком
+                "FIELD_CODE" => array(	// Поля
+                    0 => "",
+                    1 => "",
+                ),
+                "FILTER_NAME" => "",	// Фильтр
+                "HIDE_LINK_WHEN_NO_DETAIL" => "N",	// Скрывать ссылку, если нет детального описания
+                "IBLOCK_ID" => "5",	// Код информационного блока
+                "IBLOCK_TYPE" => "services",	// Тип информационного блока (используется только для проверки)
+                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",	// Включать инфоблок в цепочку навигации
+                "INCLUDE_SUBSECTIONS" => "Y",	// Показывать элементы подразделов раздела
+                "MESSAGE_404" => "",	// Сообщение для показа (по умолчанию из компонента)
+                "NEWS_COUNT" => "2000",	// Количество новостей на странице
+                "PAGER_BASE_LINK_ENABLE" => "N",	// Включить обработку ссылок
+                "PAGER_DESC_NUMBERING" => "N",	// Использовать обратную навигацию
+                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",	// Время кеширования страниц для обратной навигации
+                "PAGER_SHOW_ALL" => "N",	// Показывать ссылку "Все"
+                "PAGER_SHOW_ALWAYS" => "N",	// Выводить всегда
+                "PAGER_TEMPLATE" => ".default",	// Шаблон постраничной навигации
+                "PAGER_TITLE" => "Новости",	// Название категорий
+                "PARENT_SECTION" => "",	// ID раздела
+                "PARENT_SECTION_CODE" => "",	// Код раздела
+                "PREVIEW_TRUNCATE_LEN" => "",	// Максимальная длина анонса для вывода (только для типа текст)
+                "PROPERTY_CODE" => array(	// Свойства
+                    0 => "",
+                    1 => "",
+                ),
+                "SORT_ORDER1" => "DESC",	// Направление для первой сортировки новостей
+                "SORT_ORDER2" => "ASC",	// Направление для второй сортировки новостей
+                "STRICT_SECTION_CHECK" => "N",	// Строгая проверка раздела для показа списка
+            ),
+                false
+            );?>
+        </div>
+    </div>
+</section>
+<section class="index-section-7" id="index-section-7">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="index-section-7__text col-md-6">
+                <div class="index-section-7__title">
+                    <span>Мы на связи</span>
+                    Закажите расчет и мы свяжемся с вами в течение 30 минут
+                </div>
+            </div>
+            <div class="index-section-7__form col-md-6 p-5">
+                <div class="index-section-7__form-title">
+                    Закажите расчет стоимости в 2 клика
+                </div>
+                <?$APPLICATION->IncludeComponent(
+                    "growtag:main.feedback",
+                    "peshta_feedback_index",
+                    Array(
+                        "COMPONENT_TEMPLATE" => "peshta_feedback_index",
+                        "EMAIL_TO" => "",
+                        "EVENT_MESSAGE_ID" => array(0=>"26",),
+                        "OK_TEXT" => "Заявка на обратный звонок успешно отправлена. Ожидайте звонка наших менеджеров.",
+                        "REQUIRED_FIELDS" => array(0=>"NAME",),
+                        "USER_CONSENT" => "N",
+                        "USER_CONSENT_ID" => "0",
+                        "USER_CONSENT_IS_CHECKED" => "Y",
+                        "USER_CONSENT_IS_LOADED" => "N",
+                        "USE_CAPTCHA" => "N"
+                    )
+                );?>
+            </div>
+        </div>
+    </div>
+</section>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

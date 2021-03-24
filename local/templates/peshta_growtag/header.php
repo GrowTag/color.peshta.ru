@@ -4,20 +4,23 @@ IncludeTemplateLangFile(__FILE__);
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns:og="http://ogp.me/ns#">
-<head>
+<head itemscope itemtype="http://schema.org/WPHeader">
     <?$APPLICATION->ShowHead();?>
-    <title><?$APPLICATION->ShowTitle()?></title>
+    <title itemprop="headline"><?$APPLICATION->ShowTitle()?></title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="yandex-verification" content="1bfb630fd0490649" />
     <meta name="yandex-verification" content="c951c25d8653adb2" />
+    <!-- OPENGRAPH -->
     <meta property="og:title" content="<?$APPLICATION->ShowTitle();?>"/>
     <meta property="og:url" content="<?=$APPLICATION->GetCurDir()?>"/>
     <meta property="og:image" content="<?=SITE_TEMPLATE_PATH?>/images/logo.png"/>
     <meta property="og:site_name" content="ПЕШТА - Типография Ижевск"/>
     <meta property="og:description" content="<?$APPLICATION->ShowProperty('description');?>"/>
     <meta property="og:type" content="website" />
+    <!-- SCHEMA.org -->
+    <meta itemprop="description" name="description" content="<?$APPLICATION->ShowProperty('description');?>">
     <meta name="copyright" lang="ru" content='Типография "ПЕШТА" Ижевск' />
     <link rel="shortcut icon" type="image/x-icon" href="<?=SITE_TEMPLATE_PATH?>/favicon.ico" />
     <!-- CSS -->
@@ -53,27 +56,31 @@ IncludeTemplateLangFile(__FILE__);
     </script>
 </head>
 <body>
-<!--<div id="hellopreloader"><div id="hellopreloader_preload"><p class="pulse"><img width="200px" src="<?=SITE_TEMPLATE_PATH?>/images/logo-footer.png"/></p></div></div>-->
 <div id="loader"><span>Загрузка...</span></div>
 <div id="panel"><?$APPLICATION->ShowPanel();?></div>
 <nav class="navbar navbar-light bg-light">
     <div class="row header">
         <div class="container">
-                <div class="header-top d-flex bd-highlight align-items-center mb-1">
+                <div itemscope itemtype="http://schema.org/LocalBusiness" class="header-top d-flex bd-highlight align-items-center mb-1">
                     <div class="mr-auto p-2 bd-highlight">
                         <div class="header-top-left-logo">
-                            <a href="/"><img src="<?=SITE_TEMPLATE_PATH;?>/images/logo-header.png" alt="ПЕШТА" width="150"></a>
+                            <meta itemprop="name" content="ПЕШТА">
+                            <a itemprop="url" href="https://color.peshta.ru"><img itemprop="image" src="<?=SITE_TEMPLATE_PATH;?>/images/logo-header.png" alt="ПЕШТА" width="150"></a>
                         </div>
                         <div class="header-top-left-address">
-                            <div>г. Ижевск, ул. Кирова, 113</div>
-                            <div>Пн. – Пт. с 09:00 до 20:00</div>
+                            <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                                <meta itemprop="addressLocality" content="Ижевск">
+                                <meta itemprop="streetAddress" content="ул. Кирова, 113">
+                                г. Ижевск, ул. Кирова, 113
+                            </div>
+                            <div itemprop="openingHours" datetime="Mo-Fr, 9:00−18:00">Пн. – Пт. с 09:00 до 18:00</div>
                         </div>
                     </div>
-                    <div class="p-2 bd-highlight"><div class="header-top-right-mail"><a href="mailto:info@peshta.ru"><i class="fas fa-envelope"></i> info@peshta.ru</a></div></div>
+                    <div class="p-2 bd-highlight"><div class="header-top-right-mail"><a itemprop="email" href="mailto:info@peshta.ru"><i class="fas fa-envelope"></i> info@peshta.ru</a></div></div>
                     <div class="p-2 bd-highlight"><a href="/personal" class="btn-gray"><i class="fas fa-user"></i> Кабинет</a></div>
                     <div class="p-2 bd-highlight">
                         <div class="header-top-tel">
-                            <a href="tel:+73412400200">+7 (3412) 400-200</a>
+                            <a itemprop="telephone" href="tel:+73412400200">+7 (3412) 400-200</a>
                         </div>
                         <div class="header-top-call">
                             <a href="#" data-target="#modalCallback" data-toggle="modal">Заказать звонок</a>
@@ -82,10 +89,10 @@ IncludeTemplateLangFile(__FILE__);
                 </div>
                 <div class="header-bottom d-flex bd-highlight align-items-center mb-1">
                     <div class="mr-auto p-2 bd-highlight menu">
-                        <ul class="menu-head">
+                        <ul class="menu-head" itemscope itemtype="http://schema.org/SiteNavigationElement">
                             <li>
                                 <div class="dropdown-menu-item">
-                                    <a class="dropdown-toggle dropbtn" href="/catalog/">
+                                    <a itemprop="url" class="dropdown-toggle dropbtn" href="/catalog/">
                                         Каталог
                                     </a>
                                     <div class="dropdown-menu-item-content">
@@ -133,7 +140,7 @@ IncludeTemplateLangFile(__FILE__);
                                             "PARENT_SECTION_CODE" => "",	// Код раздела
                                             "PREVIEW_TRUNCATE_LEN" => "",	// Максимальная длина анонса для вывода (только для типа текст)
                                             "PROPERTY_CODE" => array(	// Свойства
-                                                0 => "",
+                                                0 => "MENU_NAME",
                                                 1 => "",
                                             ),
                                             "SEARCH_PAGE" => "/search/",	// Путь к странице поиска
@@ -196,10 +203,13 @@ IncludeTemplateLangFile(__FILE__);
                                                 "PAGER_SHOW_ALWAYS" => "N",
                                                 "PAGER_TEMPLATE" => ".default",
                                                 "PAGER_TITLE" => "Каталог",
-                                                "PARENT_SECTION" => "80",
+                                                "PARENT_SECTION" => "82",
                                                 "PARENT_SECTION_CODE" => "",
                                                 "PREVIEW_TRUNCATE_LEN" => "",
-                                                "PROPERTY_CODE" => array("",""),
+                                                "PROPERTY_CODE" => array(	// Свойства
+                                                    0 => "MENU_NAME",
+                                                    1 => "",
+                                                ),
                                                 "SEARCH_PAGE" => "/search/",
                                                 "SET_BROWSER_TITLE" => "N",
                                                 "SET_LAST_MODIFIED" => "N",
@@ -262,70 +272,10 @@ IncludeTemplateLangFile(__FILE__);
                                                 "PARENT_SECTION" => "83",
                                                 "PARENT_SECTION_CODE" => "",
                                                 "PREVIEW_TRUNCATE_LEN" => "",
-                                                "PROPERTY_CODE" => array("",""),
-                                                "SEARCH_PAGE" => "/search/",
-                                                "SET_BROWSER_TITLE" => "N",
-                                                "SET_LAST_MODIFIED" => "N",
-                                                "SET_META_DESCRIPTION" => "N",
-                                                "SET_META_KEYWORDS" => "N",
-                                                "SET_STATUS_404" => "Y",
-                                                "SET_TITLE" => "N",
-                                                "SHOW_404" => "N",
-                                                "SLIDER_PROPERTY" => "",
-                                                "SORT_BY1" => "ACTIVE_FROM",
-                                                "SORT_BY2" => "SORT",
-                                                "SORT_ORDER1" => "DESC",
-                                                "SORT_ORDER2" => "ASC",
-                                                "STRICT_SECTION_CHECK" => "Y",
-                                                "TEMPLATE_THEME" => "blue",
-                                                "USE_RATING" => "N",
-                                                "USE_SHARE" => "N"
-                                            )
-                                        );?>
-                                        <?$APPLICATION->IncludeComponent(
-                                            "bitrix:news.list",
-                                            "catalog_section_menu",
-                                            Array(
-                                                "ACTIVE_DATE_FORMAT" => "d.m.Y",
-                                                "ADD_SECTIONS_CHAIN" => "N",
-                                                "AJAX_MODE" => "N",
-                                                "AJAX_OPTION_ADDITIONAL" => "",
-                                                "AJAX_OPTION_HISTORY" => "N",
-                                                "AJAX_OPTION_JUMP" => "N",
-                                                "AJAX_OPTION_STYLE" => "Y",
-                                                "CACHE_FILTER" => "N",
-                                                "CACHE_GROUPS" => "Y",
-                                                "CACHE_TIME" => "36000000",
-                                                "CACHE_TYPE" => "A",
-                                                "CHECK_DATES" => "Y",
-                                                "DETAIL_URL" => "",
-                                                "DISPLAY_BOTTOM_PAGER" => "N",
-                                                "DISPLAY_DATE" => "Y",
-                                                "DISPLAY_NAME" => "Y",
-                                                "DISPLAY_PICTURE" => "Y",
-                                                "DISPLAY_PREVIEW_TEXT" => "Y",
-                                                "DISPLAY_TOP_PAGER" => "N",
-                                                "FIELD_CODE" => array("",""),
-                                                "FILTER_NAME" => "",
-                                                "HIDE_LINK_WHEN_NO_DETAIL" => "N",
-                                                "IBLOCK_ID" => "18",
-                                                "IBLOCK_TYPE" => "catalog",
-                                                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
-                                                "INCLUDE_SUBSECTIONS" => "Y",
-                                                "MEDIA_PROPERTY" => "",
-                                                "MESSAGE_404" => "",
-                                                "NEWS_COUNT" => "20",
-                                                "PAGER_BASE_LINK_ENABLE" => "N",
-                                                "PAGER_DESC_NUMBERING" => "N",
-                                                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
-                                                "PAGER_SHOW_ALL" => "N",
-                                                "PAGER_SHOW_ALWAYS" => "N",
-                                                "PAGER_TEMPLATE" => ".default",
-                                                "PAGER_TITLE" => "Каталог",
-                                                "PARENT_SECTION" => "82",
-                                                "PARENT_SECTION_CODE" => "",
-                                                "PREVIEW_TRUNCATE_LEN" => "",
-                                                "PROPERTY_CODE" => array("",""),
+                                                "PROPERTY_CODE" => array(	// Свойства
+                                                    0 => "MENU_NAME",
+                                                    1 => "",
+                                                ),
                                                 "SEARCH_PAGE" => "/search/",
                                                 "SET_BROWSER_TITLE" => "N",
                                                 "SET_LAST_MODIFIED" => "N",
@@ -388,7 +338,76 @@ IncludeTemplateLangFile(__FILE__);
                                                 "PARENT_SECTION" => "81",
                                                 "PARENT_SECTION_CODE" => "",
                                                 "PREVIEW_TRUNCATE_LEN" => "",
-                                                "PROPERTY_CODE" => array("",""),
+                                                "PROPERTY_CODE" => array(	// Свойства
+                                                    0 => "MENU_NAME",
+                                                    1 => "",
+                                                ),
+                                                "SEARCH_PAGE" => "/search/",
+                                                "SET_BROWSER_TITLE" => "N",
+                                                "SET_LAST_MODIFIED" => "N",
+                                                "SET_META_DESCRIPTION" => "N",
+                                                "SET_META_KEYWORDS" => "N",
+                                                "SET_STATUS_404" => "Y",
+                                                "SET_TITLE" => "N",
+                                                "SHOW_404" => "N",
+                                                "SLIDER_PROPERTY" => "",
+                                                "SORT_BY1" => "ACTIVE_FROM",
+                                                "SORT_BY2" => "SORT",
+                                                "SORT_ORDER1" => "DESC",
+                                                "SORT_ORDER2" => "ASC",
+                                                "STRICT_SECTION_CHECK" => "Y",
+                                                "TEMPLATE_THEME" => "blue",
+                                                "USE_RATING" => "N",
+                                                "USE_SHARE" => "N"
+                                            )
+                                        );?>
+                                        <?$APPLICATION->IncludeComponent(
+                                            "bitrix:news.list",
+                                            "catalog_section_menu",
+                                            Array(
+                                                "ACTIVE_DATE_FORMAT" => "d.m.Y",
+                                                "ADD_SECTIONS_CHAIN" => "N",
+                                                "AJAX_MODE" => "N",
+                                                "AJAX_OPTION_ADDITIONAL" => "",
+                                                "AJAX_OPTION_HISTORY" => "N",
+                                                "AJAX_OPTION_JUMP" => "N",
+                                                "AJAX_OPTION_STYLE" => "Y",
+                                                "CACHE_FILTER" => "N",
+                                                "CACHE_GROUPS" => "Y",
+                                                "CACHE_TIME" => "36000000",
+                                                "CACHE_TYPE" => "A",
+                                                "CHECK_DATES" => "Y",
+                                                "DETAIL_URL" => "",
+                                                "DISPLAY_BOTTOM_PAGER" => "N",
+                                                "DISPLAY_DATE" => "Y",
+                                                "DISPLAY_NAME" => "Y",
+                                                "DISPLAY_PICTURE" => "Y",
+                                                "DISPLAY_PREVIEW_TEXT" => "Y",
+                                                "DISPLAY_TOP_PAGER" => "N",
+                                                "FIELD_CODE" => array("",""),
+                                                "FILTER_NAME" => "",
+                                                "HIDE_LINK_WHEN_NO_DETAIL" => "N",
+                                                "IBLOCK_ID" => "18",
+                                                "IBLOCK_TYPE" => "catalog",
+                                                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+                                                "INCLUDE_SUBSECTIONS" => "Y",
+                                                "MEDIA_PROPERTY" => "",
+                                                "MESSAGE_404" => "",
+                                                "NEWS_COUNT" => "20",
+                                                "PAGER_BASE_LINK_ENABLE" => "N",
+                                                "PAGER_DESC_NUMBERING" => "N",
+                                                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+                                                "PAGER_SHOW_ALL" => "N",
+                                                "PAGER_SHOW_ALWAYS" => "N",
+                                                "PAGER_TEMPLATE" => ".default",
+                                                "PAGER_TITLE" => "Каталог",
+                                                "PARENT_SECTION" => "80",
+                                                "PARENT_SECTION_CODE" => "",
+                                                "PREVIEW_TRUNCATE_LEN" => "",
+                                                "PROPERTY_CODE" => array(	// Свойства
+                                                    0 => "MENU_NAME",
+                                                    1 => "",
+                                                ),
                                                 "SEARCH_PAGE" => "/search/",
                                                 "SET_BROWSER_TITLE" => "N",
                                                 "SET_LAST_MODIFIED" => "N",
@@ -451,7 +470,10 @@ IncludeTemplateLangFile(__FILE__);
                                                 "PARENT_SECTION" => "84",
                                                 "PARENT_SECTION_CODE" => "",
                                                 "PREVIEW_TRUNCATE_LEN" => "",
-                                                "PROPERTY_CODE" => array("",""),
+                                                "PROPERTY_CODE" => array(	// Свойства
+                                                    0 => "MENU_NAME",
+                                                    1 => "",
+                                                ),
                                                 "SEARCH_PAGE" => "/search/",
                                                 "SET_BROWSER_TITLE" => "N",
                                                 "SET_LAST_MODIFIED" => "N",
@@ -567,7 +589,7 @@ IncludeTemplateLangFile(__FILE__);
 <nav class="navbar navbar-mobile fixed-top ">
     <div class="navbar__right">
         <button type="button" class="navbar-toggle offcanvas-toggle pull-right" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas" style="float:left;">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only">Меню</span>
             <svg class="ham hamRotate ham8" viewBox="0 0 100 100" width="48" onclick="this.classList.toggle('active')">
                 <path
                     class="line top"
@@ -614,36 +636,36 @@ IncludeTemplateLangFile(__FILE__);
                 </div>
                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionMobileMenu">
                     <div class="card-body">
-                        <ul>
-                            <li><a href="/catalog/">Весь каталог</a></li>
-                            <li><a href="/catalog/vizitki/">Визитки</a></li>
-                            <li><a href="/catalog/ezhednevniki/">Ежедневники</a></li>
-                            <li><a href="/catalog/blanki/">Бланки</a></li>
-                            <li><a href="/catalog/firmennye-papki/">Фирменные папки</a></li>
-                            <li><a href="/catalog/pechati-i-shtampy/">Печати и штампы</a></li>
+                        <ul itemscope itemtype="http://schema.org/SiteNavigationElement">
+                            <li><a itemprop="url" href="/catalog/">Весь каталог</a></li>
+                            <li><a itemprop="url" href="/catalog/vizitki/">Визитки</a></li>
+                            <li><a itemprop="url" href="/catalog/ezhednevniki/">Ежедневники</a></li>
+                            <li><a itemprop="url" href="/catalog/blanki/">Бланки</a></li>
+                            <li><a itemprop="url" href="/catalog/firmennye-papki/">Фирменные папки</a></li>
+                            <li><a itemprop="url" href="/catalog/pechati-i-shtampy/">Печати и штампы</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <ul>
+        <ul itemscope itemtype="http://schema.org/SiteNavigationElement">
             <li>
-                <a href="/about/">О компании</a>
+                <a itemprop="url" href="/about/">О компании</a>
             </li>
             <li>
-                <a href="/biz/">Для бизнеса</a>
+                <a itemprop="url" href="/biz/">Для бизнеса</a>
             </li>
             <li>
-                <a href="/digital/">Пешта Digital</a>
+                <a itemprop="url" href="/digital/">Пешта Digital</a>
             </li>
             <li>
-                <a href="/works/">Наши кейсы</a>
+                <a itemprop="url" href="/works/">Наши кейсы</a>
             </li>
             <li>
-                <a href="/blog/">Блог</a>
+                <a itemprop="url" href="/blog/">Блог</a>
             </li>
             <li>
-                <a href="/contacts/">Контакты</a>
+                <a itemprop="url" href="/contacts/">Контакты</a>
             </li>
         </ul>
         <hr/>

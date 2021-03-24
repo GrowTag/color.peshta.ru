@@ -991,59 +991,6 @@ i.i-tab{
     64%  { transform: scale(1,1)      translateY(0); }
     100% { transform: scale(1,1)      translateY(0); }
 }
-
-.info-collapse-list .card {
-    background: #EFEFEF 0% 0% no-repeat padding-box;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: unset;
-    border-radius: unset;
-}
-.info-collapse-list .card:nth-child(odd) {
-    margin-right: 100px;
-}
-.info-collapse-list .card:nth-child(even) {
-    margin-left: 100px;
-}
-.info-collapse-list .card .card-header {
-    border: unset;
-    padding: 20px;
-    padding-right: 50px;
-}
-.info-collapse-list .card .card-header:after {
-    content: "";
-    width: 20px;
-    height: 20px;
-    background: url(../images/next.png) no-repeat center;
-    background-size: contain;
-    display: block;
-    right: 20px;
-    position: absolute;
-    top: 23px;
-}
-.info-collapse-list .card .card-body {
-    text-align: left;
-}
-.info-collapse-list .btn-link {
-    outline: none;
-    color: #E15A37;
-    font-size: 18px;
-    text-decoration: none;
-    width: 100%;
-    border: unset;
-    background: transparent;
-    text-align: left;
-}
-.info-collapse-list .btn-link.collapsed {
-    outline: none;
-    color: #000000 !important;
-    font-size: 18px;
-    text-decoration: none;
-    width: 100%;
-    border: unset;
-    background: transparent;
-    text-align: left;
-}
 .catalog-section__title {
     text-align: center;
     margin-top: 10px;

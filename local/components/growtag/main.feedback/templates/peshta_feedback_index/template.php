@@ -14,7 +14,11 @@ if(!defined("B_PROLOG_INCLUDED")||B_PROLOG_INCLUDED!==true)die();
 {?>
     <script type="text/javascript">
         $(document).ready(function() {
-            toastr.error('Что-то пошло не так... Попробуйте еще раз!', 'УПС!...');
+            toastr.error('<?
+                foreach($arResult["ERROR_MESSAGE"] as $res){
+                    print $res."\n\r";
+                }
+                ?>', 'УПС!...');
         });
     </script>
 <?}
@@ -66,7 +70,7 @@ if(strlen($arResult["OK_MESSAGE"]) > 0)
     <div class="index-section-7__form-button mt-4">
         <input type="hidden" name="recaptcha_response">
         <input type="hidden" name="PARAMS_HASH" value="<?=$arResult["PARAMS_HASH"]?>">
-        <input title="Нажимая 'Заказать расчет' вы соглашаетесь с политикой конфиденциальности." <?if(strlen($arResult["OK_MESSAGE"]) > 0 || isset($_GET['success'])):?>disabled<?endif;?> type="submit" name="submit" value="Заказать расчет" class="red-button form-button"/>
+        <input onclick="ym(65948923,'reachGoal','order');return true;" title="Нажимая 'Заказать расчет' вы соглашаетесь с политикой конфиденциальности." <?if(strlen($arResult["OK_MESSAGE"]) > 0 || isset($_GET['success'])):?>disabled<?endif;?> type="submit" name="submit" value="Заказать расчет" class="red-button form-button"/>
     </div>
     <div class="form-privacy mt-3">
         Нажимая 'Заказать расчет' вы соглашаетесь с <a href="/privacy/">политикой конфиденциальности</a>

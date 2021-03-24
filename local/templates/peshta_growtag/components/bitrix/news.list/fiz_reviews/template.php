@@ -26,7 +26,7 @@ $this->setFrameMode(true);
             </div>
         </div>
         <div class="p-2 bd-highlight">
-            <div class="reviews-slider__item-title row">
+            <div class="reviews-slider__item-title row" >
                 <div class="reviews-slider__item-title-img mr-2">
                     <img src="
                     <?if(empty($arItem["PREVIEW_PICTURE"]["SRC"])):?>
@@ -38,9 +38,11 @@ $this->setFrameMode(true);
                 </div>
                 <div class="reviews-slider__item-title-text">
                     <span><?=$arItem["PROPERTIES"]["SERVICE"]["VALUE"]?></span>
-                    <?if($arParams["DISPLAY_NAME"]!="N" && $arItem["NAME"]):?>
-                        <?=$arItem["NAME"];?>
-                    <?endif;?>
+                    <div>
+                        <?if($arParams["DISPLAY_NAME"]!="N" && $arItem["NAME"]):?>
+                            <?=$arItem["NAME"];?>
+                        <?endif;?>
+                    </div>
                 </div>
             </div>
         </div>

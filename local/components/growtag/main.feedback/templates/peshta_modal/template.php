@@ -14,7 +14,11 @@ if(!defined("B_PROLOG_INCLUDED")||B_PROLOG_INCLUDED!==true)die();
 {?>
     <script type="text/javascript">
         $(document).ready(function() {
-            toastr.error('Что-то пошло не так... Попробуйте еще раз!', 'УПС!...');
+            toastr.error('<?
+                foreach($arResult["ERROR_MESSAGE"] as $res){
+                    print $res."\n\r";
+                }
+                ?>', 'УПС!...');
         });
     </script>
 <?}

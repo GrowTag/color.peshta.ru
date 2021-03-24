@@ -23,6 +23,10 @@ ErrorDocument 404 /404.php
   php_value display_errors 1
 </IfModule>
 
+<IfModule headers_module>
+    Header set X-Frame-Options SAMEORIGIN
+</IfModule>
+
 <IfModule mod_rewrite.c>
   Options +FollowSymLinks
   RewriteEngine On
@@ -37,6 +41,14 @@ RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteRule ^ https://color.peshta.ru%{REQUEST_URI} [L,NE,R=301]
+
+#перенаправляем основной домен с www если к нему обратились по http
+RewriteCond %{HTTP:X-HTTPS} !1
+RewriteCond %{HTTP_HOST} ^www\.peshta\.ru$
+RewriteRule ^(.*)$ https://color.peshta.ru/$1 [R=301,L]
+#перенаправляем основной домен без www по любому протоколу
+RewriteCond %{HTTP_HOST} ^peshta\.ru$
+RewriteRule ^(.*)$ http://color.peshta.ru/$1 [R=301,L]
 </IfModule>
 
 <IfModule mod_dir.c>
