@@ -405,7 +405,7 @@ $APPLICATION->SetTitle("Пешта");
             <div class="index-section-7__text col-md-6">
                 <div class="index-section-7__title">
                     <span>Мы на связи</span>
-                    Закажите расчет и мы свяжемся с вами в течение 30 минут
+                    Оставьте заявку и получите индивидуальную скидку на первый заказ
                 </div>
             </div>
             <div class="index-section-7__form col-md-6 p-5">

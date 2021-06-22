@@ -164,6 +164,9 @@ document.getElementById('bx_auth_secure').style.display = 'inline-block';
 		case "CONFIRM_PASSWORD":
 			?><input size="30" type="password" name="REGISTER[<?=$FIELD?>]" value="<?=$arResult["VALUES"][$FIELD]?>" autocomplete="off" /><?
 			break;
+        case "PERSONAL_PHONE":
+            ?><input size="30" type="number" name="REGISTER[<?=$FIELD?>]" value="<?=$arResult["VALUES"][$FIELD]?>" autocomplete="off" /><?
+            break;
 
 		case "PERSONAL_GENDER":
 			?><select name="REGISTER[<?=$FIELD?>]">

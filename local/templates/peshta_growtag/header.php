@@ -5,7 +5,6 @@ IncludeTemplateLangFile(__FILE__);
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns:og="http://ogp.me/ns#">
 <head itemscope itemtype="http://schema.org/WPHeader">
-    <?$APPLICATION->ShowHead();?>
     <title itemprop="headline"><?$APPLICATION->ShowTitle()?></title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -30,9 +29,11 @@ IncludeTemplateLangFile(__FILE__);
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/style/style-new.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/style/slick.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/style/slick-theme.css">
+    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/style/main.css">
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/js/bootstrap-offcanvas/dist/css/bootstrap.offcanvas.min.css">
     <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700&amp;subset=cyrillic" rel="stylesheet">
+    <?$APPLICATION->ShowHead();?>
     <script type="text/javascript">
         var body = document.body;
     </script>
@@ -88,491 +89,70 @@ IncludeTemplateLangFile(__FILE__);
                     </div>
                 </div>
                 <div class="header-bottom d-flex bd-highlight align-items-center mb-1">
-                    <div class="mr-auto p-2 bd-highlight menu">
+                    <div class="mr-auto p-1 bd-highlight menu">
                         <ul class="menu-head" itemscope itemtype="http://schema.org/SiteNavigationElement">
                             <li>
-                                <div class="dropdown-menu-item">
+                                <div class="dropdown-menu-item dropdown-menu-item__about">
+                                    <a itemprop="url" class="dropdown-toggle dropbtn" href="/about/">
+                                        О компании
+                                    </a>
+                                    <div class="dropdown-menu-item-content">
+                                        <div class="container">
+                                            <?$APPLICATION->IncludeFile("/include/main_menu/about.php");?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dropdown-menu-item dropdown-menu-item__cat">
                                     <a itemprop="url" class="dropdown-toggle dropbtn" href="/catalog/">
                                         Каталог
                                     </a>
                                     <div class="dropdown-menu-item-content">
-                                        <?$APPLICATION->IncludeComponent("bitrix:news.list", "catalog_section_menu", Array(
-                                            "ACTIVE_DATE_FORMAT" => "d.m.Y",	// Формат показа даты
-                                            "ADD_SECTIONS_CHAIN" => "N",	// Включать раздел в цепочку навигации
-                                            "AJAX_MODE" => "N",	// Включить режим AJAX
-                                            "AJAX_OPTION_ADDITIONAL" => "",	// Дополнительный идентификатор
-                                            "AJAX_OPTION_HISTORY" => "N",	// Включить эмуляцию навигации браузера
-                                            "AJAX_OPTION_JUMP" => "N",	// Включить прокрутку к началу компонента
-                                            "AJAX_OPTION_STYLE" => "Y",	// Включить подгрузку стилей
-                                            "CACHE_FILTER" => "N",	// Кешировать при установленном фильтре
-                                            "CACHE_GROUPS" => "Y",	// Учитывать права доступа
-                                            "CACHE_TIME" => "36000000",	// Время кеширования (сек.)
-                                            "CACHE_TYPE" => "A",	// Тип кеширования
-                                            "CHECK_DATES" => "Y",	// Показывать только активные на данный момент элементы
-                                            "DETAIL_URL" => "",	// URL страницы детального просмотра (по умолчанию - из настроек инфоблока)
-                                            "DISPLAY_BOTTOM_PAGER" => "N",	// Выводить под списком
-                                            "DISPLAY_DATE" => "Y",	// Выводить дату элемента
-                                            "DISPLAY_NAME" => "Y",	// Выводить название элемента
-                                            "DISPLAY_PICTURE" => "Y",	// Выводить изображение для анонса
-                                            "DISPLAY_PREVIEW_TEXT" => "Y",	// Выводить текст анонса
-                                            "DISPLAY_TOP_PAGER" => "N",	// Выводить над списком
-                                            "FIELD_CODE" => array(	// Поля
-                                                0 => "",
-                                                1 => "",
-                                            ),
-                                            "FILTER_NAME" => "",	// Фильтр
-                                            "HIDE_LINK_WHEN_NO_DETAIL" => "N",	// Скрывать ссылку, если нет детального описания
-                                            "IBLOCK_ID" => "18",	// Код информационного блока
-                                            "IBLOCK_TYPE" => "catalog",	// Тип информационного блока (используется только для проверки)
-                                            "INCLUDE_IBLOCK_INTO_CHAIN" => "N",	// Включать инфоблок в цепочку навигации
-                                            "INCLUDE_SUBSECTIONS" => "Y",	// Показывать элементы подразделов раздела
-                                            "MEDIA_PROPERTY" => "",	// Свойство для отображения медиа
-                                            "MESSAGE_404" => "",	// Сообщение для показа (по умолчанию из компонента)
-                                            "NEWS_COUNT" => "20",	// Количество новостей на странице
-                                            "PAGER_BASE_LINK_ENABLE" => "N",	// Включить обработку ссылок
-                                            "PAGER_DESC_NUMBERING" => "N",	// Использовать обратную навигацию
-                                            "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",	// Время кеширования страниц для обратной навигации
-                                            "PAGER_SHOW_ALL" => "N",	// Показывать ссылку "Все"
-                                            "PAGER_SHOW_ALWAYS" => "N",	// Выводить всегда
-                                            "PAGER_TEMPLATE" => ".default",	// Шаблон постраничной навигации
-                                            "PAGER_TITLE" => "Каталог",	// Название категорий
-                                            "PARENT_SECTION" => "79",	// ID раздела
-                                            "PARENT_SECTION_CODE" => "",	// Код раздела
-                                            "PREVIEW_TRUNCATE_LEN" => "",	// Максимальная длина анонса для вывода (только для типа текст)
-                                            "PROPERTY_CODE" => array(	// Свойства
-                                                0 => "MENU_NAME",
-                                                1 => "",
-                                            ),
-                                            "SEARCH_PAGE" => "/search/",	// Путь к странице поиска
-                                            "SET_BROWSER_TITLE" => "N",	// Устанавливать заголовок окна браузера
-                                            "SET_LAST_MODIFIED" => "N",	// Устанавливать в заголовках ответа время модификации страницы
-                                            "SET_META_DESCRIPTION" => "N",	// Устанавливать описание страницы
-                                            "SET_META_KEYWORDS" => "N",	// Устанавливать ключевые слова страницы
-                                            "SET_STATUS_404" => "Y",	// Устанавливать статус 404
-                                            "SET_TITLE" => "N",	// Устанавливать заголовок страницы
-                                            "SHOW_404" => "N",	// Показ специальной страницы
-                                            "SLIDER_PROPERTY" => "",	// Свойство с изображениями для слайдера
-                                            "SORT_BY1" => "ACTIVE_FROM",	// Поле для первой сортировки новостей
-                                            "SORT_BY2" => "SORT",	// Поле для второй сортировки новостей
-                                            "SORT_ORDER1" => "DESC",	// Направление для первой сортировки новостей
-                                            "SORT_ORDER2" => "ASC",	// Направление для второй сортировки новостей
-                                            "STRICT_SECTION_CHECK" => "Y",	// Строгая проверка раздела для показа списка
-                                            "TEMPLATE_THEME" => "blue",	// Цветовая тема
-                                            "USE_RATING" => "N",	// Разрешить голосование
-                                            "USE_SHARE" => "N",	// Отображать панель соц. закладок
-                                        ),
-                                            false
-                                        );?>
-                                        <?$APPLICATION->IncludeComponent(
-                                            "bitrix:news.list",
-                                            "catalog_section_menu",
-                                            Array(
-                                                "ACTIVE_DATE_FORMAT" => "d.m.Y",
-                                                "ADD_SECTIONS_CHAIN" => "N",
-                                                "AJAX_MODE" => "N",
-                                                "AJAX_OPTION_ADDITIONAL" => "",
-                                                "AJAX_OPTION_HISTORY" => "N",
-                                                "AJAX_OPTION_JUMP" => "N",
-                                                "AJAX_OPTION_STYLE" => "Y",
-                                                "CACHE_FILTER" => "N",
-                                                "CACHE_GROUPS" => "Y",
-                                                "CACHE_TIME" => "36000000",
-                                                "CACHE_TYPE" => "A",
-                                                "CHECK_DATES" => "Y",
-                                                "DETAIL_URL" => "",
-                                                "DISPLAY_BOTTOM_PAGER" => "N",
-                                                "DISPLAY_DATE" => "Y",
-                                                "DISPLAY_NAME" => "Y",
-                                                "DISPLAY_PICTURE" => "Y",
-                                                "DISPLAY_PREVIEW_TEXT" => "Y",
-                                                "DISPLAY_TOP_PAGER" => "N",
-                                                "FIELD_CODE" => array("",""),
-                                                "FILTER_NAME" => "",
-                                                "HIDE_LINK_WHEN_NO_DETAIL" => "N",
-                                                "IBLOCK_ID" => "18",
-                                                "IBLOCK_TYPE" => "catalog",
-                                                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
-                                                "INCLUDE_SUBSECTIONS" => "Y",
-                                                "MEDIA_PROPERTY" => "",
-                                                "MESSAGE_404" => "",
-                                                "NEWS_COUNT" => "20",
-                                                "PAGER_BASE_LINK_ENABLE" => "N",
-                                                "PAGER_DESC_NUMBERING" => "N",
-                                                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
-                                                "PAGER_SHOW_ALL" => "N",
-                                                "PAGER_SHOW_ALWAYS" => "N",
-                                                "PAGER_TEMPLATE" => ".default",
-                                                "PAGER_TITLE" => "Каталог",
-                                                "PARENT_SECTION" => "82",
-                                                "PARENT_SECTION_CODE" => "",
-                                                "PREVIEW_TRUNCATE_LEN" => "",
-                                                "PROPERTY_CODE" => array(	// Свойства
-                                                    0 => "MENU_NAME",
-                                                    1 => "",
-                                                ),
-                                                "SEARCH_PAGE" => "/search/",
-                                                "SET_BROWSER_TITLE" => "N",
-                                                "SET_LAST_MODIFIED" => "N",
-                                                "SET_META_DESCRIPTION" => "N",
-                                                "SET_META_KEYWORDS" => "N",
-                                                "SET_STATUS_404" => "Y",
-                                                "SET_TITLE" => "N",
-                                                "SHOW_404" => "N",
-                                                "SLIDER_PROPERTY" => "",
-                                                "SORT_BY1" => "ACTIVE_FROM",
-                                                "SORT_BY2" => "SORT",
-                                                "SORT_ORDER1" => "DESC",
-                                                "SORT_ORDER2" => "ASC",
-                                                "STRICT_SECTION_CHECK" => "Y",
-                                                "TEMPLATE_THEME" => "blue",
-                                                "USE_RATING" => "N",
-                                                "USE_SHARE" => "N"
-                                            )
-                                        );?>
-                                        <?$APPLICATION->IncludeComponent(
-                                            "bitrix:news.list",
-                                            "catalog_section_menu",
-                                            Array(
-                                                "ACTIVE_DATE_FORMAT" => "d.m.Y",
-                                                "ADD_SECTIONS_CHAIN" => "N",
-                                                "AJAX_MODE" => "N",
-                                                "AJAX_OPTION_ADDITIONAL" => "",
-                                                "AJAX_OPTION_HISTORY" => "N",
-                                                "AJAX_OPTION_JUMP" => "N",
-                                                "AJAX_OPTION_STYLE" => "Y",
-                                                "CACHE_FILTER" => "N",
-                                                "CACHE_GROUPS" => "Y",
-                                                "CACHE_TIME" => "36000000",
-                                                "CACHE_TYPE" => "A",
-                                                "CHECK_DATES" => "Y",
-                                                "DETAIL_URL" => "",
-                                                "DISPLAY_BOTTOM_PAGER" => "N",
-                                                "DISPLAY_DATE" => "Y",
-                                                "DISPLAY_NAME" => "Y",
-                                                "DISPLAY_PICTURE" => "Y",
-                                                "DISPLAY_PREVIEW_TEXT" => "Y",
-                                                "DISPLAY_TOP_PAGER" => "N",
-                                                "FIELD_CODE" => array("",""),
-                                                "FILTER_NAME" => "",
-                                                "HIDE_LINK_WHEN_NO_DETAIL" => "N",
-                                                "IBLOCK_ID" => "18",
-                                                "IBLOCK_TYPE" => "catalog",
-                                                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
-                                                "INCLUDE_SUBSECTIONS" => "Y",
-                                                "MEDIA_PROPERTY" => "",
-                                                "MESSAGE_404" => "",
-                                                "NEWS_COUNT" => "20",
-                                                "PAGER_BASE_LINK_ENABLE" => "N",
-                                                "PAGER_DESC_NUMBERING" => "N",
-                                                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
-                                                "PAGER_SHOW_ALL" => "N",
-                                                "PAGER_SHOW_ALWAYS" => "N",
-                                                "PAGER_TEMPLATE" => ".default",
-                                                "PAGER_TITLE" => "Каталог",
-                                                "PARENT_SECTION" => "83",
-                                                "PARENT_SECTION_CODE" => "",
-                                                "PREVIEW_TRUNCATE_LEN" => "",
-                                                "PROPERTY_CODE" => array(	// Свойства
-                                                    0 => "MENU_NAME",
-                                                    1 => "",
-                                                ),
-                                                "SEARCH_PAGE" => "/search/",
-                                                "SET_BROWSER_TITLE" => "N",
-                                                "SET_LAST_MODIFIED" => "N",
-                                                "SET_META_DESCRIPTION" => "N",
-                                                "SET_META_KEYWORDS" => "N",
-                                                "SET_STATUS_404" => "Y",
-                                                "SET_TITLE" => "N",
-                                                "SHOW_404" => "N",
-                                                "SLIDER_PROPERTY" => "",
-                                                "SORT_BY1" => "ACTIVE_FROM",
-                                                "SORT_BY2" => "SORT",
-                                                "SORT_ORDER1" => "DESC",
-                                                "SORT_ORDER2" => "ASC",
-                                                "STRICT_SECTION_CHECK" => "Y",
-                                                "TEMPLATE_THEME" => "blue",
-                                                "USE_RATING" => "N",
-                                                "USE_SHARE" => "N"
-                                            )
-                                        );?>
-                                        <?$APPLICATION->IncludeComponent(
-                                            "bitrix:news.list",
-                                            "catalog_section_menu",
-                                            Array(
-                                                "ACTIVE_DATE_FORMAT" => "d.m.Y",
-                                                "ADD_SECTIONS_CHAIN" => "N",
-                                                "AJAX_MODE" => "N",
-                                                "AJAX_OPTION_ADDITIONAL" => "",
-                                                "AJAX_OPTION_HISTORY" => "N",
-                                                "AJAX_OPTION_JUMP" => "N",
-                                                "AJAX_OPTION_STYLE" => "Y",
-                                                "CACHE_FILTER" => "N",
-                                                "CACHE_GROUPS" => "Y",
-                                                "CACHE_TIME" => "36000000",
-                                                "CACHE_TYPE" => "A",
-                                                "CHECK_DATES" => "Y",
-                                                "DETAIL_URL" => "",
-                                                "DISPLAY_BOTTOM_PAGER" => "N",
-                                                "DISPLAY_DATE" => "Y",
-                                                "DISPLAY_NAME" => "Y",
-                                                "DISPLAY_PICTURE" => "Y",
-                                                "DISPLAY_PREVIEW_TEXT" => "Y",
-                                                "DISPLAY_TOP_PAGER" => "N",
-                                                "FIELD_CODE" => array("",""),
-                                                "FILTER_NAME" => "",
-                                                "HIDE_LINK_WHEN_NO_DETAIL" => "N",
-                                                "IBLOCK_ID" => "18",
-                                                "IBLOCK_TYPE" => "catalog",
-                                                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
-                                                "INCLUDE_SUBSECTIONS" => "Y",
-                                                "MEDIA_PROPERTY" => "",
-                                                "MESSAGE_404" => "",
-                                                "NEWS_COUNT" => "20",
-                                                "PAGER_BASE_LINK_ENABLE" => "N",
-                                                "PAGER_DESC_NUMBERING" => "N",
-                                                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
-                                                "PAGER_SHOW_ALL" => "N",
-                                                "PAGER_SHOW_ALWAYS" => "N",
-                                                "PAGER_TEMPLATE" => ".default",
-                                                "PAGER_TITLE" => "Каталог",
-                                                "PARENT_SECTION" => "81",
-                                                "PARENT_SECTION_CODE" => "",
-                                                "PREVIEW_TRUNCATE_LEN" => "",
-                                                "PROPERTY_CODE" => array(	// Свойства
-                                                    0 => "MENU_NAME",
-                                                    1 => "",
-                                                ),
-                                                "SEARCH_PAGE" => "/search/",
-                                                "SET_BROWSER_TITLE" => "N",
-                                                "SET_LAST_MODIFIED" => "N",
-                                                "SET_META_DESCRIPTION" => "N",
-                                                "SET_META_KEYWORDS" => "N",
-                                                "SET_STATUS_404" => "Y",
-                                                "SET_TITLE" => "N",
-                                                "SHOW_404" => "N",
-                                                "SLIDER_PROPERTY" => "",
-                                                "SORT_BY1" => "ACTIVE_FROM",
-                                                "SORT_BY2" => "SORT",
-                                                "SORT_ORDER1" => "DESC",
-                                                "SORT_ORDER2" => "ASC",
-                                                "STRICT_SECTION_CHECK" => "Y",
-                                                "TEMPLATE_THEME" => "blue",
-                                                "USE_RATING" => "N",
-                                                "USE_SHARE" => "N"
-                                            )
-                                        );?>
-                                        <?$APPLICATION->IncludeComponent(
-                                            "bitrix:news.list",
-                                            "catalog_section_menu",
-                                            Array(
-                                                "ACTIVE_DATE_FORMAT" => "d.m.Y",
-                                                "ADD_SECTIONS_CHAIN" => "N",
-                                                "AJAX_MODE" => "N",
-                                                "AJAX_OPTION_ADDITIONAL" => "",
-                                                "AJAX_OPTION_HISTORY" => "N",
-                                                "AJAX_OPTION_JUMP" => "N",
-                                                "AJAX_OPTION_STYLE" => "Y",
-                                                "CACHE_FILTER" => "N",
-                                                "CACHE_GROUPS" => "Y",
-                                                "CACHE_TIME" => "36000000",
-                                                "CACHE_TYPE" => "A",
-                                                "CHECK_DATES" => "Y",
-                                                "DETAIL_URL" => "",
-                                                "DISPLAY_BOTTOM_PAGER" => "N",
-                                                "DISPLAY_DATE" => "Y",
-                                                "DISPLAY_NAME" => "Y",
-                                                "DISPLAY_PICTURE" => "Y",
-                                                "DISPLAY_PREVIEW_TEXT" => "Y",
-                                                "DISPLAY_TOP_PAGER" => "N",
-                                                "FIELD_CODE" => array("",""),
-                                                "FILTER_NAME" => "",
-                                                "HIDE_LINK_WHEN_NO_DETAIL" => "N",
-                                                "IBLOCK_ID" => "18",
-                                                "IBLOCK_TYPE" => "catalog",
-                                                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
-                                                "INCLUDE_SUBSECTIONS" => "Y",
-                                                "MEDIA_PROPERTY" => "",
-                                                "MESSAGE_404" => "",
-                                                "NEWS_COUNT" => "20",
-                                                "PAGER_BASE_LINK_ENABLE" => "N",
-                                                "PAGER_DESC_NUMBERING" => "N",
-                                                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
-                                                "PAGER_SHOW_ALL" => "N",
-                                                "PAGER_SHOW_ALWAYS" => "N",
-                                                "PAGER_TEMPLATE" => ".default",
-                                                "PAGER_TITLE" => "Каталог",
-                                                "PARENT_SECTION" => "80",
-                                                "PARENT_SECTION_CODE" => "",
-                                                "PREVIEW_TRUNCATE_LEN" => "",
-                                                "PROPERTY_CODE" => array(	// Свойства
-                                                    0 => "MENU_NAME",
-                                                    1 => "",
-                                                ),
-                                                "SEARCH_PAGE" => "/search/",
-                                                "SET_BROWSER_TITLE" => "N",
-                                                "SET_LAST_MODIFIED" => "N",
-                                                "SET_META_DESCRIPTION" => "N",
-                                                "SET_META_KEYWORDS" => "N",
-                                                "SET_STATUS_404" => "Y",
-                                                "SET_TITLE" => "N",
-                                                "SHOW_404" => "N",
-                                                "SLIDER_PROPERTY" => "",
-                                                "SORT_BY1" => "ACTIVE_FROM",
-                                                "SORT_BY2" => "SORT",
-                                                "SORT_ORDER1" => "DESC",
-                                                "SORT_ORDER2" => "ASC",
-                                                "STRICT_SECTION_CHECK" => "Y",
-                                                "TEMPLATE_THEME" => "blue",
-                                                "USE_RATING" => "N",
-                                                "USE_SHARE" => "N"
-                                            )
-                                        );?>
-                                        <?$APPLICATION->IncludeComponent(
-                                            "bitrix:news.list",
-                                            "catalog_section_menu",
-                                            Array(
-                                                "ACTIVE_DATE_FORMAT" => "d.m.Y",
-                                                "ADD_SECTIONS_CHAIN" => "N",
-                                                "AJAX_MODE" => "N",
-                                                "AJAX_OPTION_ADDITIONAL" => "",
-                                                "AJAX_OPTION_HISTORY" => "N",
-                                                "AJAX_OPTION_JUMP" => "N",
-                                                "AJAX_OPTION_STYLE" => "Y",
-                                                "CACHE_FILTER" => "N",
-                                                "CACHE_GROUPS" => "Y",
-                                                "CACHE_TIME" => "36000000",
-                                                "CACHE_TYPE" => "A",
-                                                "CHECK_DATES" => "Y",
-                                                "DETAIL_URL" => "",
-                                                "DISPLAY_BOTTOM_PAGER" => "N",
-                                                "DISPLAY_DATE" => "Y",
-                                                "DISPLAY_NAME" => "Y",
-                                                "DISPLAY_PICTURE" => "Y",
-                                                "DISPLAY_PREVIEW_TEXT" => "Y",
-                                                "DISPLAY_TOP_PAGER" => "N",
-                                                "FIELD_CODE" => array("",""),
-                                                "FILTER_NAME" => "",
-                                                "HIDE_LINK_WHEN_NO_DETAIL" => "N",
-                                                "IBLOCK_ID" => "18",
-                                                "IBLOCK_TYPE" => "catalog",
-                                                "INCLUDE_IBLOCK_INTO_CHAIN" => "N",
-                                                "INCLUDE_SUBSECTIONS" => "Y",
-                                                "MEDIA_PROPERTY" => "",
-                                                "MESSAGE_404" => "",
-                                                "NEWS_COUNT" => "20",
-                                                "PAGER_BASE_LINK_ENABLE" => "N",
-                                                "PAGER_DESC_NUMBERING" => "N",
-                                                "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
-                                                "PAGER_SHOW_ALL" => "N",
-                                                "PAGER_SHOW_ALWAYS" => "N",
-                                                "PAGER_TEMPLATE" => ".default",
-                                                "PAGER_TITLE" => "Каталог",
-                                                "PARENT_SECTION" => "84",
-                                                "PARENT_SECTION_CODE" => "",
-                                                "PREVIEW_TRUNCATE_LEN" => "",
-                                                "PROPERTY_CODE" => array(	// Свойства
-                                                    0 => "MENU_NAME",
-                                                    1 => "",
-                                                ),
-                                                "SEARCH_PAGE" => "/search/",
-                                                "SET_BROWSER_TITLE" => "N",
-                                                "SET_LAST_MODIFIED" => "N",
-                                                "SET_META_DESCRIPTION" => "N",
-                                                "SET_META_KEYWORDS" => "N",
-                                                "SET_STATUS_404" => "Y",
-                                                "SET_TITLE" => "N",
-                                                "SHOW_404" => "N",
-                                                "SLIDER_PROPERTY" => "",
-                                                "SORT_BY1" => "ACTIVE_FROM",
-                                                "SORT_BY2" => "SORT",
-                                                "SORT_ORDER1" => "DESC",
-                                                "SORT_ORDER2" => "ASC",
-                                                "STRICT_SECTION_CHECK" => "Y",
-                                                "TEMPLATE_THEME" => "blue",
-                                                "USE_RATING" => "N",
-                                                "USE_SHARE" => "N"
-                                            )
-                                        );?>
+                                        <div class="container">
+                                            <?$APPLICATION->IncludeFile("/include/main_menu/catalog.php");?>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <?$APPLICATION->IncludeComponent("bitrix:news.list","menu_head",Array(
-                                            "DISPLAY_DATE" => "N",
-                                            "DISPLAY_NAME" => "Y",
-                                            "DISPLAY_PICTURE" => "N",
-                                            "DISPLAY_PREVIEW_TEXT" => "N",
-                                            "AJAX_MODE" => "N",
-                                            "IBLOCK_TYPE" => "news",
-                                            "IBLOCK_ID" => "18",
-                                            "NEWS_COUNT" => "200",
-                                            "SORT_BY1" => "ACTIVE_FROM",
-                                            "SORT_ORDER1" => "DESC",
-                                            "SORT_BY2" => "SORT",
-                                            "SORT_ORDER2" => "ASC",
-                                            "FILTER_NAME" => "",
-                                            "FIELD_CODE" => Array("ID"),
-                                            "PROPERTY_CODE" => Array("DESCRIPTION"),
-                                            "CHECK_DATES" => "Y",
-                                            "DETAIL_URL" => "",
-                                            "PREVIEW_TRUNCATE_LEN" => "",
-                                            "ACTIVE_DATE_FORMAT" => "d.m.Y",
-                                            "SET_TITLE" => "N",
-                                            "SET_BROWSER_TITLE" => "N",
-                                            "SET_META_KEYWORDS" => "N",
-                                            "SET_META_DESCRIPTION" => "N",
-                                            "SET_LAST_MODIFIED" => "Y",
-                                            "INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
-                                            "ADD_SECTIONS_CHAIN" => "Y",
-                                            "HIDE_LINK_WHEN_NO_DETAIL" => "N",
-                                            "PARENT_SECTION" => "",
-                                            "PARENT_SECTION_CODE" => "",
-                                            "INCLUDE_SUBSECTIONS" => "Y",
-                                            "CACHE_TYPE" => "N",
-                                            "CACHE_TIME" => "3600",
-                                            "CACHE_FILTER" => "Y",
-                                            "CACHE_GROUPS" => "Y",
-                                            "DISPLAY_TOP_PAGER" => "N",
-                                            "DISPLAY_BOTTOM_PAGER" => "N",
-                                            "PAGER_TITLE" => "Новости",
-                                            "PAGER_SHOW_ALWAYS" => "N",
-                                            "PAGER_TEMPLATE" => "",
-                                            "PAGER_DESC_NUMBERING" => "Y",
-                                            "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
-                                            "PAGER_SHOW_ALL" => "N",
-                                            "PAGER_BASE_LINK_ENABLE" => "Y",
-                                            "SET_STATUS_404" => "Y",
-                                            "SHOW_404" => "Y",
-                                            "MESSAGE_404" => "",
-                                            "PAGER_BASE_LINK" => "",
-                                            "PAGER_PARAMS_NAME" => "arrPager",
-                                            "AJAX_OPTION_JUMP" => "N",
-                                            "AJAX_OPTION_STYLE" => "Y",
-                                            "AJAX_OPTION_HISTORY" => "N",
-                                            "AJAX_OPTION_ADDITIONAL" => ""
-                                        )
-                                    );?>
+                            </li>
+                            <li>
+                                <div class="dropdown-menu-item dropdown-menu-item__packaging">
+                                    <a itemprop="url" class="dropdown-toggle dropbtn" href="/packaging/">
+                                        Упаковка
+                                    </a>
+                                    <div class="dropdown-menu-item-content">
+                                        <div class="container">
+                                            <?$APPLICATION->IncludeFile("/include/main_menu/packaging.php");?>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
-                            <?$APPLICATION->IncludeComponent(
-	"bitrix:menu",
-	".default",
-	array(
-		"ALLOW_MULTI_SELECT" => "N",
-		"CHILD_MENU_TYPE" => "left",
-		"DELAY" => "N",
-		"MAX_LEVEL" => "2",
-		"MENU_CACHE_GET_VARS" => array(
-		),
-		"MENU_CACHE_TIME" => "3600",
-		"MENU_CACHE_TYPE" => "N",
-		"MENU_CACHE_USE_GROUPS" => "Y",
-		"ROOT_MENU_TYPE" => "top",
-		"USE_EXT" => "Y",
-		"COMPONENT_TEMPLATE" => ".default"
-	),
-	false
-);?>
+                            <li>
+                                <div class="dropdown-menu-item dropdown-menu-item__support">
+                                    <a itemprop="url" class="dropdown-toggle dropbtn" href="/support/">
+                                        Поддержка
+                                    </a>
+                                    <div class="dropdown-menu-item-content">
+                                        <div class="container">
+                                            <?$APPLICATION->IncludeFile("/include/main_menu/support.php");?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="dropdown-menu-item dropdown-menu-item__biz">
+                                    <a itemprop="url" class="dropdown-toggle dropbtn" href="/biz/">
+                                        Отрасли
+                                    </a>
+                                    <div class="dropdown-menu-item-content">
+                                        <div class="container">
+                                            <?$APPLICATION->IncludeFile("/include/main_menu/biz.php");?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a href="/cases/" class="root-item">Кейсы</a></li>
+                            <li><a href="/blog/" class="root-item">Блог</a></li>
                         </ul>
                     </div>
                     <div class="p-2 bd-highlight search">
@@ -639,9 +219,9 @@ IncludeTemplateLangFile(__FILE__);
                         <ul itemscope itemtype="http://schema.org/SiteNavigationElement">
                             <li><a itemprop="url" href="/catalog/">Весь каталог</a></li>
                             <li><a itemprop="url" href="/catalog/vizitki/">Визитки</a></li>
-                            <li><a itemprop="url" href="/catalog/ezhednevniki/">Ежедневники</a></li>
-                            <li><a itemprop="url" href="/catalog/blanki/">Бланки</a></li>
-                            <li><a itemprop="url" href="/catalog/firmennye-papki/">Фирменные папки</a></li>
+                            <li><a itemprop="url" href="/catalog/listovki/">Листовки</a></li>
+                            <li><a itemprop="url" href="/catalog/katalogi/">Каталоги</a></li>
+                            <li><a itemprop="url" href="/catalog/etiketki/">Этикетка</a></li>
                             <li><a itemprop="url" href="/catalog/pechati-i-shtampy/">Печати и штампы</a></li>
                         </ul>
                     </div>
@@ -653,13 +233,19 @@ IncludeTemplateLangFile(__FILE__);
                 <a itemprop="url" href="/about/">О компании</a>
             </li>
             <li>
-                <a itemprop="url" href="/biz/">Для бизнеса</a>
+                <a itemprop="url" href="/biz/">Отрасли</a>
             </li>
             <li>
                 <a itemprop="url" href="/digital/">Пешта Digital</a>
             </li>
             <li>
-                <a itemprop="url" href="/works/">Наши кейсы</a>
+                <a itemprop="url" href="/packaging/">Упаковка</a>
+            </li>
+            <li>
+                <a itemprop="url" href="/support/">Поддержка</a>
+            </li>
+            <li>
+                <a itemprop="url" href="/cases/">Кейсы</a>
             </li>
             <li>
                 <a itemprop="url" href="/blog/">Блог</a>

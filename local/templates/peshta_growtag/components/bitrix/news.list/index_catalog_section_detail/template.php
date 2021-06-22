@@ -18,8 +18,16 @@ $dbSection = CIBlockSection::GetList(Array(), array("ID" => $arParams["PARENT_SE
 if($arSection = $dbSection->GetNext()){
     $arResult["SECTION"]["PATH"][0]["PROPERTIES"] = $arSection;
 }
+$arParams["ELEMENTS"] = array_slice($arParams["ELEMENTS"], 0, 6);
 ?>
-<div class="catalog-list row">
+<?if(!empty($arParams["ELEMENTS"])):?>
+<section class="index-section-2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <h2>Товары, которые заказывают с этим</h2>
+        </div>
+        <div class="row">
+<div class="catalog-list">
     <div class="container-sm p-0">
         <div class="row m-0">
         <?foreach($arResult["ITEMS"] as $arItem):?>
@@ -41,6 +49,7 @@ if($arSection = $dbSection->GetNext()){
             array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM'))
         );
         ?>
+        <?if(in_array($arItem["ID"], $arParams["ELEMENTS"])):?>
         <div class="catalog-list__item col-lg-2 col-md-3 col-sm-6 col-xs-12" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
             <a href="<?echo $arItem["DETAIL_PAGE_URL"]?>">
                 <div class="catalog-list__item-card">
@@ -55,7 +64,15 @@ if($arSection = $dbSection->GetNext()){
                 </div>
             </a>
         </div>
+        <?endif?>
         <?endforeach;?>
         </div>
     </div>
 </div>
+        </div>
+        <div class="row justify-content-center">
+            <a href="/catalog/" class="index-section-link">Смотреть всю продукцию ></a>
+        </div>
+    </div>
+</section>
+<?endif?>

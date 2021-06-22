@@ -22,39 +22,39 @@ if($arSection = $dbSection->GetNext()){
 <div class="menu-catalog-list">
     <div class="menu-catalog-list__title">
         <?=$arResult["SECTION"]["PATH"][0]["DESCRIPTION"];?>
-    </div>
-    <div class="menu-catalog-list__links">
-        <?foreach($arResult["ITEMS"] as $arItem):?>
-        <?
-        $this->AddEditAction(
-            $arItem['ID'],
-            $arItem['EDIT_LINK'],
-            CIBlock::GetArrayByID(
-                $arItem["IBLOCK_ID"],
-                "ELEMENT_EDIT"
-            )
-        );
-        $this->AddDeleteAction(
-            $arItem['ID'],
-            $arItem['DELETE_LINK'],
-            CIBlock::GetArrayByID(
-                $arItem["IBLOCK_ID"],
-                "ELEMENT_DELETE"),
-            array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM'))
-        );
-        ?>
-            <div class="link" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
-                <a itemprop="url" href="<?echo $arItem["DETAIL_PAGE_URL"]?>">
-                    <div class="link__title">
-                        <?if(empty($arItem["PROPERTIES"]["MENU_NAME"]["VALUE"])){
-                            print $arItem["NAME"];
-                        } else {
-                            print $arItem["PROPERTIES"]["MENU_NAME"]["VALUE"];
-                        }
-                        ?>
-                    </div>
-                </a>
-            </div>
-        <?endforeach;?>
+        <div class="menu-catalog-list__links">
+            <?foreach($arResult["ITEMS"] as $arItem):?>
+                <?
+                $this->AddEditAction(
+                    $arItem['ID'],
+                    $arItem['EDIT_LINK'],
+                    CIBlock::GetArrayByID(
+                        $arItem["IBLOCK_ID"],
+                        "ELEMENT_EDIT"
+                    )
+                );
+                $this->AddDeleteAction(
+                    $arItem['ID'],
+                    $arItem['DELETE_LINK'],
+                    CIBlock::GetArrayByID(
+                        $arItem["IBLOCK_ID"],
+                        "ELEMENT_DELETE"),
+                    array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM'))
+                );
+                ?>
+                <div class="link" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
+                    <a itemprop="url" href="<?echo $arItem["DETAIL_PAGE_URL"]?>">
+                        <div class="link__title">
+                            <?if(empty($arItem["PROPERTIES"]["MENU_NAME"]["VALUE"])){
+                                print $arItem["NAME"];
+                            } else {
+                                print $arItem["PROPERTIES"]["MENU_NAME"]["VALUE"];
+                            }
+                            ?>
+                        </div>
+                    </a>
+                </div>
+            <?endforeach;?>
+        </div>
     </div>
 </div>

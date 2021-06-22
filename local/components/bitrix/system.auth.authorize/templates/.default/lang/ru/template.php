@@ -1,7 +1,7 @@
 <?
 $MESS["AUTH_PLEASE_AUTH"] = "Пожалуйста, авторизуйтесь:";
-$MESS["AUTH_LOGIN"] = "Ваш логин";
-$MESS["AUTH_PASSWORD"] = "Ваш пароль";
+$MESS["AUTH_LOGIN"] = "Ваш Email";
+$MESS["AUTH_PASSWORD"] = "Пароль";
 $MESS["AUTH_REMEMBER_ME"] = "Запомнить меня на этом компьютере";
 $MESS["AUTH_AUTHORIZE"] = "Войти";
 $MESS["AUTH_REGISTER"] = "Зарегистрироваться";

@@ -11,14 +11,14 @@
 .ram-calc__tab_active {color: #333; background: #eee; color: #fff;}
 .ram-calc__calculator {}
 .ram-calc__calculator_unactive {display: none;}
-.ram-calc__calculator-properties {}
+.ram-calc__calculator-properties { min-width:89% }
 .ram-calc__property {padding: 0 0 20px;}
 .ram-calc__property:after {content: ''; clear: both; display: block;}
 .ram-calc__property-title {padding: 0 0 10px; font-weight: bolder;}
 .ram-calc__property-hint {font-size: 90%; line-height: 100%; padding: 0 0 20px; margin-top: -10px; color: #888;}
 .ram-calc__property-list {padding: 0 0 10px;}
 .ram-calc__property-list:after {content: ''; clear: both; display: block;}
-.ram-calc__property-list_select {padding: 0 0 20px;}
+.ram-calc__property-list_select {padding: 0;}
 .ram-calc__property-list_select select {width: 100%; padding: 5px; border: 2px solid #ddd; outline: none; font-size: 100%; line-height: 100%; font-family: inherit; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;}
 .ram-calc__property-list_select select option[disabled] {display: none;}
 .ram-calc__property-list_items {}

@@ -8,13 +8,22 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 
 $APPLICATION->SetTitle("404 Not Found");
 
-$APPLICATION->IncludeComponent("bitrix:main.map", ".default", Array(
-	"LEVEL"	=>	"3",
-	"COL_NUM"	=>	"2",
-	"SHOW_DESCRIPTION"	=>	"Y",
-	"SET_TITLE"	=>	"Y",
-	"CACHE_TIME"	=>	"3600"
-	)
-);
-
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+?>
+    <section class="digital-section-1 not-found-section">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="digital-section-1__title col-12">
+                    <h1>404</h1>
+                </div>
+                <div class="section-description mt-5">
+                    По этому адресу ничего нет...
+                </div>
+                <div class="section-button mt-5">
+                    <a href="/" class="red-button">
+                        На главную
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

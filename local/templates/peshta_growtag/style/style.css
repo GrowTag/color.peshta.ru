@@ -2117,6 +2117,8 @@ form {
     .history-about__item-content {
         text-align: center;
         padding-top: 10px;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
     .for-biz-section-second__counter {
         text-align: center;

@@ -1,3 +1,179 @@
+$(document).ready(function(){
+    $(".dropdown-menu-item__cat .dropdown-menu-item-content").css("left", "-"+$(".dropdown-menu-item__cat").offset().left+"px");
+    $(".dropdown-menu-item__cat .dropdown-menu-item-content").width($("body").width());
+    $(".dropdown-menu-item__about .dropdown-menu-item-content").css("left", "-"+$(".dropdown-menu-item__about").offset().left+"px");
+    $(".dropdown-menu-item__about .dropdown-menu-item-content").width($("body").width());
+    $(".dropdown-menu-item__biz .dropdown-menu-item-content").css("left", "-"+$(".dropdown-menu-item__biz").offset().left+"px");
+    $(".dropdown-menu-item__biz .dropdown-menu-item-content").width($("body").width());
+    $(".dropdown-menu-item__support .dropdown-menu-item-content").css("left", "-"+$(".dropdown-menu-item__support").offset().left+"px");
+    $(".dropdown-menu-item__support .dropdown-menu-item-content").width($("body").width());
+    $(".dropdown-menu-item__packaging .dropdown-menu-item-content").css("left", "-"+$(".dropdown-menu-item__packaging").offset().left+"px");
+    $(".dropdown-menu-item__packaging .dropdown-menu-item-content").width($("body").width());
+
+    $(".feedback-packaging-detail .feedback-packaging-detail__red").css("padding-left", $(".container").offset().left + 30 +"px");
+    $(".feedback-packaging-detail .feedback-packaging-detail__white").css("padding-right", $(".container").offset().left + 30 +"px");
+
+    if($(window).width()>=768){
+        let el = $(".biz-steps");
+        let el2 = $(".biz-steps");
+        let step = $(".biz-steps .step");
+        let width = $(".biz-steps-wrap").width();
+        let offset = $(".container").offset().left + 30;
+
+        el.css("margin-right", "-"+offset+"px");
+        step.css("width", width);
+    }
+});
+
+$(function() {
+    KHAYR_MAIN_COMMENT_ShowMessage();
+    $("body").on("click", "#KHAYR_MAIN_COMMENT_container .nav a", function() {
+        BX.showWait();
+        $.post($(this).attr("href"), {"ACTION": "nav"}, function(result) {
+            $("#KHAYR_MAIN_COMMENT_container").html(result);
+            BX.closeWait();
+        });
+        return false;
+    });
+});
+
+function KHAYR_MAIN_COMMENT_getUrl(url, newParams)
+{
+    var link = document.createElement('a');
+    link.href = url;
+    //console.log(link.search);
+    if (newParams)
+    {
+        if (link.search)
+            link.search += '&'+newParams;
+        else
+            link.search = '?'+newParams;
+    }
+    var query = {};
+    link.search.substring(1).split('&').forEach(function(value) {
+        value = value.split('=');
+        if (value[0] in query)
+        {
+            if (!(query[value[0]] instanceof Array))
+                query[value[0]] = [query[value[0]]];
+            query[value[0]].push(value[1]);
+        }
+        else
+            query[value[0]] = value[1];
+    });
+    //console.log(query);
+    var out = new Array();
+    for (key in query)
+        out.push(key + '=' + encodeURIComponent(query[key]));
+    out = out.join('&');
+    //console.log(query);
+    if (out)
+        link.search = "?"+out;
+    else
+        link.search = "";
+    console.log(link.href);
+    return link.href;
+}
+
+function KHAYR_MAIN_COMMENT_validate(_this, pagen)
+{
+    if (!pagen)
+        pagen = '';
+    else
+        pagen = 'PAGEN_'+pagen;
+    BX.showWait();
+    $.ajax({
+        url: KHAYR_MAIN_COMMENT_getUrl($(_this).attr("action"), pagen),
+        type: 'POST',
+        data: new FormData(_this),
+        processData: false,
+        contentType: false,
+        success: function(result) {
+            $("#KHAYR_MAIN_COMMENT_container").html(result);
+            KHAYR_MAIN_COMMENT_ShowMessage();
+        },
+        error: function() {
+        },
+        complete: function() {
+            BX.closeWait();
+        }
+    });
+    return false;
+}
+
+function KHAYR_MAIN_COMMENT_delete(_this, id, message, pagen)
+{
+    if (!pagen)
+        pagen = '';
+    else
+        pagen = 'PAGEN_'+pagen;
+    if (!message)
+        var message = "DELETE?";
+    if (confirm(message))
+    {
+        BX.showWait();
+        $(_this).parents(".stock:first").hide("slow");
+        $.ajax({
+            url: KHAYR_MAIN_COMMENT_getUrl(window.location.href, pagen),
+            type: 'POST',
+            data: {"ACTION": "delete", "COM_ID": id},
+            success: function(result) {
+                $("#KHAYR_MAIN_COMMENT_container").html(result);
+                KHAYR_MAIN_COMMENT_ShowMessage();
+            },
+            error: function() {
+            },
+            complete: function() {
+                BX.closeWait();
+            }
+        });
+    }
+    return false;
+}
+function KHAYR_MAIN_COMMENT_edit(_this, id)
+{
+    $(".main_form").hide();
+    $(".form_for").hide();
+    $("#edit_form_"+id).show();
+}
+function KHAYR_MAIN_COMMENT_add(_this, id)
+{
+    $(".main_form").hide();
+    $(".form_for").hide();
+    $("#add_form_"+id).show();
+}
+function KHAYR_MAIN_COMMENT_back()
+{
+    $(".main_form").show();
+    $(".form_for").hide();
+}
+
+var KHAYR_MAIN_COMMENT_action = false;
+function KHAYR_MAIN_COMMENT_ShowMessage()
+{
+    var err = $(".err").text();
+    var suc = $(".suc").text();
+    clearTimeout(KHAYR_MAIN_COMMENT_action);
+    if (err.length > 0)
+    {
+        toastr.error(err, 'Успешно!');
+    }
+    else if (suc.length > 0)
+    {
+        toastr.success(suc, 'Успешно!');
+    }
+
+    KHAYR_MAIN_COMMENT_action = setTimeout(function() {
+        KHAYR_MAIN_COMMENT_exp_close();
+    }, 5000);
+}
+function KHAYR_MAIN_COMMENT_exp_close()
+{
+    $(".khayr_main_comment_suc_exp, .khayr_main_comment_err_exp").fadeOut(1000);
+    setTimeout(function() {
+        $(".khayr_main_comment_suc_exp, .khayr_main_comment_err_exp").remove();
+    }, 1000);
+}
 /********** SLIDERS **********/
 $(document).ready(function(){
     $('.reviews-slider').slick({
@@ -53,6 +229,36 @@ $(document).ready(function(){
         dots: true,
         infinite: false,
         arrows: false,
+    });
+    $('.biz-steps.mobile').slick({
+        /*lazyLoad: 'ondemand',*/
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        dots: true,
+        infinite: false,
+        arrows: false,
+    });
+
+    $('.support-slider').slick({
+        vertical: true,
+        arrows: false,
+        dots: false,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 3,
+        adaptiveHeight: true,
+        autoplay: false,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    vertical: false,
+                    arrows: false,
+                    slidesToShow: 1,
+                    adaptiveHeight: false,
+                    dots: true
+                }
+            }]
     });
 
     $('.digital-slider').slick({
@@ -116,6 +322,7 @@ $(function(){
     $("input[name='user_phone']").mask("+7 (999) 999-99-99");
     $("input[name='PERSONAL_PHONE']").mask("+7 (999) 999-99-99");
     $("input[name='PERSONAL_MOBILE']").mask("+7 (999) 999-99-99");
+    $("#personal-phone").mask("+7 (999) 999-99-99");
 });
 /***** MOBILE MENU EVENTS *****/
 $('#js-bootstrap-offcanvas').on('hidden.bs.offcanvas', function (e) {
@@ -123,6 +330,91 @@ $('#js-bootstrap-offcanvas').on('hidden.bs.offcanvas', function (e) {
 });
 $('#js-bootstrap-offcanvas').on('shown.bs.offcanvas', function (e) {
     $(".ham").addClass("active");
+});
+/************ SHOW MORE *************/
+$(document).ready(function(){
+
+    $(document).on('click', '.load_more', function(){
+
+        var targetContainer = $('.blog-elements-list-more'),          //  Контейнер, в котором хранятся элементы
+            url =  $('.blog-elements-list-more .load_more').attr('data-url');    //  URL, из которого будем брать элементы
+
+        if (url !== undefined) {
+            $.ajax({
+                type: 'GET',
+                url: url,
+                dataType: 'html',
+                success: function(data){
+
+                    //  Удаляем старую навигацию
+                    $('.load_more').remove();
+
+                    var elements = $(data).find('.blog-elements-list-more .blog-elements-list__item'),  //  Ищем элементы
+                        pagination = $(data).find('.blog-elements-list-more .load_more');//  Ищем навигацию
+
+                    targetContainer.append(elements);   //  Добавляем посты в конец контейнера
+                    targetContainer.append(pagination); //  добавляем навигацию следом
+
+                }
+            })
+        }
+
+    });
+
+    $(document).on('click', '.load_more_cases', function(){
+
+        var targetContainer = $('.cases-elements-list'),          //  Контейнер, в котором хранятся элементы
+            url =  $('.load_more_cases').attr('data-url');    //  URL, из которого будем брать элементы
+
+        if (url !== undefined) {
+            $.ajax({
+                type: 'GET',
+                url: url,
+                dataType: 'html',
+                success: function(data){
+
+                    //  Удаляем старую навигацию
+                    $('.load_more_cases').remove();
+
+                    var elements = $(data).find('.cases-elements-list__item'),  //  Ищем элементы
+                        pagination = $(data).find('.load_more_cases');//  Ищем навигацию
+
+                    targetContainer.append(elements);   //  Добавляем посты в конец контейнера
+                    targetContainer.append(pagination); //  добавляем навигацию следом
+
+                }
+            })
+        }
+
+    });
+
+    $(document).on('click', '.load_more_video', function(){
+
+        var targetContainer = $('.new-videos-slider'),          //  Контейнер, в котором хранятся элементы
+            url =  $('.load_more_video').attr('data-url');    //  URL, из которого будем брать элементы
+
+        if (url !== undefined) {
+            $.ajax({
+                type: 'GET',
+                url: url,
+                dataType: 'html',
+                success: function(data){
+
+                    //  Удаляем старую навигацию
+                    $('.load_more_video').remove();
+
+                    var elements = $(data).find('.new-videos-slider__item'),  //  Ищем элементы
+                        pagination = $(data).find('.load_more_video');//  Ищем навигацию
+
+                    targetContainer.append(elements);   //  Добавляем посты в конец контейнера
+                    targetContainer.append(pagination); //  добавляем навигацию следом
+
+                }
+            })
+        }
+
+    });
+
 });
 /*********************** RAM CALC ************************************/
 
@@ -958,6 +1250,11 @@ var CRamCalc =
             form.find('select option:selected').each(function(){
                 if($(this).data("price") !== 'none'){
                     properies.push($(this).data("name"));
+                }
+            });
+            form.find('select option:selected').each(function(){
+                if($(this).data("quantity")){
+                    $("input[name=QUANTITY]").val($(this).data("quantity"));
                 }
             });
             form.find('input:checked').each(function(){

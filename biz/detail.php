@@ -44,7 +44,7 @@ $APPLICATION->SetTitle("Каталог");
 		"PAGER_TEMPLATE" => ".default",
 		"PAGER_TITLE" => "Страница",
 		"PROPERTY_CODE" => array(
-			0 => "",
+			0 => "IMAGES",
 			1 => "",
 		),
 		"SET_BROWSER_TITLE" => "Y",
@@ -62,47 +62,42 @@ $APPLICATION->SetTitle("Каталог");
 	),
 	false
 );?>
-<?$APPLICATION->IncludeComponent(
-    "growtag:main.feedback",
-    "peshta_subscribe",
-    array(
-        "RUB_ID" => "1",
-        "USE_CAPTCHA" => "N",
-        "OK_TEXT" => "Заявка на обратный звонок успешно отправлена. Ожидайте звонка наших менеджеров.",
-        "EMAIL_TO" => "",
-        "REQUIRED_FIELDS" => array(
-            0 => "NAME",
-        ),
-        "EVENT_MESSAGE_ID" => array(
-            0 => "34",
-        ),
-        "EVENT_MESSAGE_ID_OUT" => "35",
-        "COMPONENT_TEMPLATE" => "peshta_subscribe",
-        "USER_CONSENT" => "N",
-        "USER_CONSENT_ID" => "0",
-        "USER_CONSENT_IS_CHECKED" => "Y",
-        "USER_CONSENT_IS_LOADED" => "N"
-    ),
-    false
-);?>
-<script type="text/javascript">
-    (function() {
-        // Add event listener
-        document.addEventListener("mousemove", parallax);
-        const elem = document.querySelector(".detail-biz-section");
-        // Magic happens here
-        function parallax(e) {
-            let _w = window.innerWidth/2;
-            let _h = window.innerHeight/2;
-            let _mouseX = e.clientX;
-            let _mouseY = e.clientY;
-            let _depth1 = `${50 - (_mouseX - _w) * 0.01}% ${50 - (_mouseY - _h) * 0.01}%`;
-            let _depth2 = `${50 - (_mouseX - _w) * 0.02}% ${50 - (_mouseY - _h) * 0.02}%`;
-            let _depth3 = `${50 - (_mouseX - _w) * 0.06}% ${50 - (_mouseY - _h) * 0.06}%`;
-            let x = `${_depth3}, ${_depth2}, ${_depth1}`;
-            elem.style.backgroundPosition = x;
-        }
-
-    })();
-</script>
+<section class="index-section-7">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="index-section-7__text col-md-6">
+                <div class="index-section-7__title">
+                    <span>Мы на связи</span>
+                    Оставьте заявку и получите индивидуальную скидку на первый заказ
+                </div>
+            </div>
+            <div class="index-section-7__form col-md-6 p-5">
+                <div class="index-section-7__form-title">
+                    Закажите расчет стоимости в 2 клика
+                </div>
+                <?$APPLICATION->IncludeComponent(
+                    "growtag:main.feedback",
+                    "peshta_feedback_index",
+                    array(
+                        "USE_CAPTCHA" => "N",
+                        "OK_TEXT" => "Заявка на обратный звонок успешно отправлена. Ожидайте звонка наших менеджеров.",
+                        "EMAIL_TO" => "",
+                        "REQUIRED_FIELDS" => array(
+                            0 => "NAME",
+                        ),
+                        "EVENT_MESSAGE_ID" => array(
+                            0 => "26",
+                        ),
+                        "COMPONENT_TEMPLATE" => "peshta_feedback_index",
+                        "USER_CONSENT" => "N",
+                        "USER_CONSENT_ID" => "0",
+                        "USER_CONSENT_IS_CHECKED" => "Y",
+                        "USER_CONSENT_IS_LOADED" => "N"
+                    ),
+                    false
+                );?>
+            </div>
+        </div>
+    </div>
+</section>
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

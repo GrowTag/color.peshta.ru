@@ -164,7 +164,7 @@ if ($arParams["MULTYPLE"] !== "Y")
 
                                             $selected = $arValue["CHECKED"] ? "selected='selected'" : "";
 
-                                            ?><option data-price="<?=$arValue["PRICE"];?>" id="<?=$arProperty["FIELD_NAME"]?>_<?=$valueID?>" <?=$selected?> value="<?=$valueID?>" data-name="<?if(!empty($arProperty["TITLE"])):?> <?=$arProperty["TITLE"]?><?else:?><?=$arProperty["NAME"];?><?endif;?>: <?=$arValue["TITLE"]?>"><?=$arValue["TITLE"]?></option><?
+                                            ?><option data-price="<?=$arValue["PRICE"];?>" id="<?=$arProperty["FIELD_NAME"]?>_<?=$valueID?>" <?=$selected?> value="<?=$valueID?>" data-name="<?if(!empty($arProperty["TITLE"])):?> <?=$arProperty["TITLE"]?><?else:?><?=$arProperty["NAME"];?><?endif;?>: <?=$arValue["TITLE"]?>" <?if($arProperty["NAME"] == "Тираж"):?> data-quantity="<?=$arValue["TITLE"]?>"<?endif;?>><?=$arValue["TITLE"]?></option><?
                                         }
                                         ?></select>
                                 <?}

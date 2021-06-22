@@ -43,10 +43,11 @@ $APPLICATION->SetTitle("ПЕШТА - Личный кабинет")
             <div class="personal-section__sidebar col-md-4">
                 <div class="personal-section__sidebar-title col-12">
                     <div class="user-avatar">
-                        <img alt="<?=$USER->GetFullName();?>" src="/local/templates/peshta_growtag/images/user.svg">
+                        <img alt="<?=empty($USER->GetFullName()) ? $USER->GetLogin() : $USER->GetFullName()?>" src="/local/templates/peshta_growtag/images/user.svg">
                     </div>
-                    <?=$USER->GetFullName();?><br>
-                    <span>@<?=$USER->GetLogin();?></span>
+                    <?=empty($USER->GetFullName()) ? $USER->GetLogin() : $USER->GetFullName()?>
+                    <br>
+                    <span><?=$USER->GetLogin();?></span>
                 </div>
                 <div class="personal-section__sidebar-order-content col-12">
                     <a href="/personal/profile/" class="personal-section__sidebar-order-content_button">Редактировать профиль</a> <a href="/personal/?logout=yes" class="personal-section__sidebar-order-content_button-gray">Выход</a>
