@@ -1,9 +1,9 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetPageProperty("description", "Выйдите на новый уровень скорости печати и результативности продаж, маркетинга и рекламы с цифровыми технологиями «Пешта Digital®»");
+$APPLICATION->SetPageProperty("description", "Программа Пешта Digital это скорость - печать от 60 минут, экономия - до 30% на печать, персонализация - ваши печатные материалы бьют точно в цель");
 $APPLICATION->SetPageProperty("keywords", "типография, ижевск, визитки, фирменный стиль, заказать визитки, упаковка, печать, штампы, буклеты, полиграфия, нумераторы, полиграфия для бизнеса");
-$APPLICATION->SetPageProperty("title", "ПЕШТА - Срочная печать и персонализация маркетинговых материалов в Ижевске");
-$APPLICATION->SetTitle("Цифровая печать");
+$APPLICATION->SetPageProperty("title", "Срочная печать и персонализация маркетинговых материалов в Ижевске");
+$APPLICATION->SetTitle("Программа Пешта Digital");
 $APPLICATION->SetPageProperty('canonical', "https://".$_SERVER['HTTP_HOST'].$APPLICATION->GetCurPage());
 ?>
 <section class="digital-section-1">

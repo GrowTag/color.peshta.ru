@@ -3,8 +3,6 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Блог");
 ?>
 <main class="site-main">
-    <header class="page-header">
-        <h1 class="page-header__h1 h1">Блог о&nbsp;полиграфии и&nbsp;бизнесе</h1>
         <?$APPLICATION->IncludeComponent("bitrix:catalog.section.list", "blog_sections_list", Array(
             "ADD_SECTIONS_CHAIN" => "N",	// Включать раздел в цепочку навигации
             "CACHE_FILTER" => "N",	// Кешировать при установленном фильтре
@@ -36,7 +34,6 @@ $APPLICATION->SetTitle("Блог");
         ),
             false
         );?>
-    </header>
     <?$APPLICATION->IncludeComponent(
         "bitrix:search.form",
         "search_blog",

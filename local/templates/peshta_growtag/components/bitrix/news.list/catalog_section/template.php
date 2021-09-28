@@ -19,7 +19,7 @@ if($arSection = $dbSection->GetNext()){
     $arResult["SECTION"]["PATH"][0]["PROPERTIES"] = $arSection;
 }
 ?>
-<div class="catalog-list row" itemscope itemtype="http://schema.org/ItemList">
+<div class="catalog-list row">
     <div class="container">
         <h2 class="catalog-list__title mt-5 mb-5"><?=$arResult["SECTION"]["PATH"][0]["DESCRIPTION"];?></h2>
         <div class="row m-0">
@@ -42,24 +42,17 @@ if($arSection = $dbSection->GetNext()){
             array("CONFIRM" => GetMessage('CT_BNL_ELEMENT_DELETE_CONFIRM'))
         );
         ?>
-            <div itemscope itemprop="itemListElement" itemtype="http://schema.org/Product" class="catalog-list__item col-lg-3 col-md-3 col-sm-6 col-xs-12" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
-                <a itemprop="url" href="<?echo $arItem["DETAIL_PAGE_URL"]?>">
+            <div class="catalog-list__item col-lg-3 col-md-3 col-sm-6 col-xs-12" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
+                <a href="<?echo $arItem["DETAIL_PAGE_URL"]?>">
                     <div class="catalog-list__item-card">
                         <img
-                            itemprop="image"
                             src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>"
                             class="catalog-list__item-card-img"
                             alt="<?echo $arItem["NAME"]?>"
                         />
-                        <div itemprop="name" class="catalog-list__item-card-title">
+                        <div class="catalog-list__item-card-title">
                             <?echo $arItem["NAME"]?>
                         </div>
-                        <div class="offers" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                            <meta itemprop="price" content="Индивидуальный расчет">
-                            <meta itemprop="priceCurrency" content="RUB">
-                            <meta itemprop="availability" content="http://schema.org/InStock" />
-                        </div>
-                        <meta itemprop="description" content="<?echo $arItem["PREVIEW_TEXT"]?>">
                     </div>
                 </a>
             </div>

@@ -21,6 +21,8 @@ ErrorDocument 404 /404.php
   #php_admin_value mbstring.func_overload 2
   #php_value mbstring.internal_encoding UTF-8
   php_value display_errors 1
+  php_value display_startup_errors 1
+  php_value error_reporting E_ALL
 </IfModule>
 
 <IfModule headers_module>

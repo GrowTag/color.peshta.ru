@@ -1,6 +1,8 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetPageProperty("title", "Заказать визитки в Ижевске. Изготовление визиток от 60 минут | Типография Пешта");
+$APPLICATION->SetPageProperty("description", ".");
+$APPLICATION->SetPageProperty("keywords", "Типография Пешта");
+$APPLICATION->SetPageProperty("title", "Печать визиток в Ижевске | Типография Пешта");
 $APPLICATION->SetTitle("Каталог");
 ?>
 <?$APPLICATION->IncludeComponent(

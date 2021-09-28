@@ -1,5 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetPageProperty("description", "Полный список полиграфических услуг типографии Пешта. Печатные рекламные материалы, POS-материалы, печатная продукция для поддержания фирменного стиля и продаж в одном месте");
+$APPLICATION->SetPageProperty("title", "Каталог услуг типографии Пешта");
 $APPLICATION->SetTitle("Каталог");
 ?>
 <div class="catalog-section-1">

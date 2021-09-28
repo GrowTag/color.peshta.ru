@@ -198,6 +198,7 @@ $APPLICATION->SetPageProperty('canonical', "https://".$_SERVER['HTTP_HOST'].$arR
             );?>
             <?$APPLICATION->IncludeComponent("bitrix:news.list", "support_steps_detail", Array(
                 "ELEMENT" => $arResult["ID"],
+                "FILTER_NAME" => "arFilterSteps",
                 "ACTIVE_DATE_FORMAT" => "d.m.Y",	// Формат показа даты
                 "ADD_SECTIONS_CHAIN" => "N",	// Включать раздел в цепочку навигации
                 "AJAX_MODE" => "N",	// Включить режим AJAX
@@ -221,7 +222,6 @@ $APPLICATION->SetPageProperty('canonical', "https://".$_SERVER['HTTP_HOST'].$arR
                     0 => "",
                     1 => "",
                 ),
-                "FILTER_NAME" => "",	// Фильтр
                 "HIDE_LINK_WHEN_NO_DETAIL" => "N",	// Скрывать ссылку, если нет детального описания
                 "IBLOCK_ID" => "30",	// Код информационного блока
                 "IBLOCK_TYPE" => "services",	// Тип информационного блока (используется только для проверки)

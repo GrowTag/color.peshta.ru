@@ -1,5 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetPageProperty("title", "Ответы на часто задаваемые вопросы к компании Пешта");
+$APPLICATION->SetPageProperty("description", "Ответы на вопросы о доставке, минимальном тираже и формате фалов");
 $APPLICATION->SetTitle("ПЕШТА - Часто задаваемые вопросы");
 ?>
 <section class="faq-section-1">

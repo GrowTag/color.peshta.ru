@@ -34,7 +34,6 @@ $videoLink = explode('=', $arResult["PROPERTIES"]["VIDEO"]["VALUE"])[1];
                 <div class="catalog-section-detail-header__img d-flex justify-content-center align-items-center">
                     <?if($arParams["DISPLAY_PICTURE"]!="N" && is_array($arResult["DETAIL_PICTURE"])):?>
                         <img
-                                itemprop="image"
                                 class="detail_picture"
                                 src="<?=$arResult["DETAIL_PICTURE"]["SRC"]?>"
                                 alt="<?=$arResult["NAME"]?>"
